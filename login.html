@@ -17,7 +17,7 @@ body{min-height:100vh;background:radial-gradient(circle at 15% 15%,rgba(25,118,2
 .features{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:30px}.feature{padding:14px;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(255,255,255,.045)}.feature b{display:block;font-size:13px}.feature small{display:block;color:#91a9be;margin-top:5px;font-size:10px}
 .form-side{padding:48px 45px;background:rgba(255,255,255,.035);display:flex;align-items:center}.card{width:100%;max-width:420px;margin:auto}.eyebrow{font-size:11px;font-weight:800;color:#67b3ff;letter-spacing:1.8px;text-transform:uppercase}.card h2{font-size:32px;margin:9px 0 8px}.sub{font-size:12px;color:#9eb3c6;line-height:1.6;margin-bottom:28px}
 label{display:block;font-size:11px;font-weight:800;color:#c8d8e6;margin:0 0 7px}.field{margin-bottom:16px}input{width:100%;height:50px;border-radius:12px;border:1px solid #35526b;background:#091c2e;color:#fff;padding:0 14px;outline:none;font-size:14px;transition:.18s}input:focus{border-color:#58aaf4;box-shadow:0 0 0 4px rgba(88,170,244,.12)}.password-wrap{position:relative}.password-wrap input{padding-right:48px}.eye{position:absolute;right:8px;top:7px;width:36px;height:36px;border:0;background:transparent;color:#8fa8bc;cursor:pointer;border-radius:8px}.eye:hover{background:rgba(255,255,255,.06)}
-button.sign{width:100%;height:52px;border:0;border-radius:13px;background:linear-gradient(135deg,#1976d2,#48a5f4);color:#fff;font-weight:900;cursor:pointer;font-size:14px;box-shadow:0 10px 28px rgba(25,118,210,.25);margin-top:5px}.sign:hover{transform:translateY(-1px)}.hint{margin-top:18px;padding:12px 13px;border-radius:11px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);color:#9fb5c8;font-size:10px;line-height:1.6}.error{display:none;color:#ffb5b8;background:rgba(229,37,42,.12);border:1px solid rgba(229,37,42,.3);padding:10px 12px;border-radius:10px;font-size:11px;margin-bottom:13px}.error.show{display:block}.footer{text-align:center;color:#6f879b;font-size:9px;margin-top:22px}
+button.sign{width:100%;height:52px;border:0;border-radius:13px;background:linear-gradient(135deg,#1976d2,#48a5f4);color:#fff;font-weight:900;cursor:pointer;font-size:14px;box-shadow:0 10px 28px rgba(25,118,210,.25);margin-top:5px}.sign:hover{transform:translateY(-1px)}.hint{margin-top:18px;padding:14px 15px;border-radius:11px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);color:#9fb5c8;font-size:10px;line-height:1.7}.contact{display:none;margin-top:14px;padding:15px;border-radius:12px;background:rgba(25,118,210,.10);border:1px solid rgba(88,170,244,.22);color:#c9d9e7;font-size:11px;line-height:1.7}.contact.show{display:block}.contact b{color:#fff}.contact a{color:#67b3ff;text-decoration:none}.contact .ar{margin-top:5px}.error{display:none;color:#ffb5b8;background:rgba(229,37,42,.12);border:1px solid rgba(229,37,42,.3);padding:10px 12px;border-radius:10px;font-size:11px;margin-bottom:13px}.error.show{display:block}.footer{text-align:center;color:#6f879b;font-size:9px;margin-top:22px}
 @media(max-width:800px){body{overflow:auto;padding:18px}.shell{grid-template-columns:1fr;min-height:0;border-radius:22px}.hero{padding:28px 24px}.hero h1{font-size:34px;margin:28px 0 10px}.hero p{font-size:12px}.features{display:none}.form-side{padding:28px 24px}.brand img{width:58px;height:48px}.brand strong{font-size:20px}}
 @media(max-width:430px){.shell{width:100%}.hero{padding:22px 18px}.hero h1{font-size:29px}.form-side{padding:24px 18px}.card h2{font-size:27px}}
 </style>
@@ -50,7 +50,7 @@ button.sign{width:100%;height:52px;border:0;border-radius:13px;background:linear
 <div class="field"><label for="password">Password</label><div class="password-wrap"><input id="password" type="password" placeholder="Enter password" autocomplete="current-password" required><button class="eye" type="button" id="toggle" aria-label="Show password">👁</button></div></div>
 <button class="sign" type="submit">SIGN IN →</button>
 </form>
-<div class="hint">Authorized users must use an <b>@alfalabs.com</b> account. Viewer access is read-only; administrator accounts can use management and reporting functions.</div>
+<div id="contact" class="contact"><b>Access request / طلب صلاحيات الدخول</b><div>Access has not been granted to this account. Please contact the HSE administrator to request a password and access permissions.</div><div class="ar" dir="rtl">لم يتم منح صلاحية الدخول لهذا الحساب. لطلب كلمة المرور وصلاحيات الدخول، برجاء التواصل مع مسؤول الـ HSE.</div><div style="margin-top:8px"><b>Email:</b> <a href="mailto:hossam.elsharabasy@alfalabs.com">hossam.elsharabasy@alfalabs.com</a><br><b>Phone:</b> <a href="tel:01050118688">01050118688</a></div></div><div class="hint">Authorized users must use an <b>@alfalabs.com</b> account. Viewer access is read-only; administrator accounts can use management and reporting functions.</div>
 <div class="footer">Protected HSE workspace • Alfa Labs</div>
 </div>
 </section>
@@ -72,17 +72,23 @@ err.classList.remove('show');
 const em=email.value.trim().toLowerCase(),pw=pass.value;
 if(!em.endsWith('@alfalabs.com')){err.textContent='Please use your Alfa Labs email address (@alfalabs.com).';err.classList.add('show');return}
 if(!pw){err.textContent='Password is required.';err.classList.add('show');return}
-const isAdmin=em==='hossam.elsharabasy@alfalabs.com';
-if(isAdmin){
+const users={
+'hossam.elsharabasy@alfalabs.com':{role:'admin',passwordHash:'7d824ad37e366f330ef3d3bafb8dc8b18a5b07622e2830eac5966339d98a94b0'}
+};
+const user=users[em];
+if(!user){
+err.textContent='This account is not registered. Please contact the HSE administrator to request access.';
+err.classList.add('show');
+document.getElementById('contact').classList.add('show');
+return;
+}
 const passwordHash=await sha256(pw);
-if(passwordHash!=='7d824ad37e366f330ef3d3bafb8dc8b18a5b07622e2830eac5966339d98a94b0'){
-err.textContent='Incorrect administrator password.';
+if(passwordHash!==user.passwordHash){
+err.textContent='Incorrect password. Please try again.';
 err.classList.add('show');
 return;
 }
-}
-const role=isAdmin?'admin':'viewer';
-sessionStorage.setItem('alfaLabsAuthSession',JSON.stringify({email:em,role:role,loginAt:Date.now()}));
+sessionStorage.setItem('alfaLabsAuthSession',JSON.stringify({email:em,role:user.role,loginAt:Date.now()}));
 location.replace(ret&&ret.includes(location.origin)?ret:'./index.html');
 });
 })();
