@@ -9,8 +9,8 @@ if(window.__ALFA_AUTH__)return; window.__ALFA_AUTH__=true;
 
 const CONFIG={
   allowedDomain:'@alfalabs.com',
-  admins:[
-    'hossam.elsharabasy@alfalabs.com'
+  users:[
+    {email:'hossam.elsharabasy@alfalabs.com',role:'admin'}
   ],
   sessionKey:'alfaLabsAuthSession'
 };
@@ -19,19 +19,25 @@ function getSession(){
   try{return JSON.parse(sessionStorage.getItem(CONFIG.sessionKey)||'null')}catch(e){return null}
 }
 function setSession(email,role){
-  sessionStorage.setItem(CONFIG.sessionKey,JSON.stringify({
-    email:email,role:role,loginAt:Date.now()
-  }));
+  sessionStorage.setItem(CONFIG.sessionKey,JSON.stringify({email:email,role:role,loginAt:Date.now()}));
 }
 function clearSession(){sessionStorage.removeItem(CONFIG.sessionKey)}
-function isAllowed(email){return String(email||'').trim().toLowerCase().endsWith(CONFIG.allowedDomain)}
-function roleFor(email){return CONFIG.admins.map(x=>x.toLowerCase()).includes(String(email).trim().toLowerCase())?'admin':'viewer'}
+function isAllowed(email){
+  const e=String(email||'').trim().toLowerCase();
+  return e.endsWith(CONFIG.allowedDomain)&&CONFIG.users.some(u=>u.email.toLowerCase()===e);
+}
+function roleFor(email){
+  const e=String(email||'').trim().toLowerCase();
+  const u=CONFIG.users.find(x=>x.email.toLowerCase()===e);
+  return u?u.role:null;
+}
 
 function guard(){
   const path=(location.pathname.split('/').pop()||'index.html').toLowerCase();
   if(path==='login.html')return true;
   const s=getSession();
   if(!s||!isAllowed(s.email)){
+    clearSession();
     location.replace('./login.html?return='+encodeURIComponent(location.href));
     return false;
   }
