@@ -102,6 +102,11 @@
         display:none;border:0!important;background:#0b3157!important;color:#fff!important;
         width:44px!important;height:44px!important;min-width:44px!important;border-radius:9px!important;
         font-size:22px!important;cursor:pointer!important;align-items:center!important;justify-content:center!important;
+        padding:0!important;flex-direction:column!important;gap:5px!important;
+      }
+      .mobile-menu-btn .menu-line,#menu .menu-line{
+        display:block!important;width:20px!important;height:2px!important;background:#fff!important;
+        border-radius:2px!important;flex:0 0 2px!important;pointer-events:none!important;
       }
       .mobile-header-logo{
         display:none;width:42px!important;height:42px!important;object-fit:contain!important;
@@ -154,13 +159,13 @@
         h=document.createElement('header');h.className='unified-header';
         const title=document.body.dataset.pageTitle||document.title.replace(/\s*\|.*$/,'')||'Alfa Labs HSE';
         const subtitle=document.body.dataset.pageSubtitle||'Alfa Labs HSE Management Platform';
-        h.innerHTML='<div class="unified-left"><button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open menu">☰</button><img class="mobile-header-logo" src="./LOGOG.png" alt="Alfa Labs"><div class="unified-title"><h1>'+title+'</h1><p>'+subtitle+'</p></div></div><div class="unified-meta"></div>';
+        h.innerHTML='<div class="unified-left"><button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open menu"><span class="menu-line"></span><span class="menu-line"></span><span class="menu-line"></span></button><img class="mobile-header-logo" src="./LOGOG.png" alt="Alfa Labs"><div class="unified-title"><h1>'+title+'</h1><p>'+subtitle+'</p></div></div><div class="unified-meta"></div>';
         const main=document.querySelector('main,.main')||document.body;main.insertBefore(h,main.firstChild);
       }
       let left=h.querySelector('.unified-left');
       if(!left){left=document.createElement('div');left.className='unified-left';while(h.firstChild)left.appendChild(h.firstChild);h.appendChild(left)}
       let button=left.querySelector('.mobile-menu-btn,#menu');
-      if(!button){button=document.createElement('button');button.className='mobile-menu-btn';button.id='mobileMenuBtn';button.type='button';button.setAttribute('aria-label','Open menu');button.textContent='☰';left.insertBefore(button,left.firstChild)}
+      if(!button){button=document.createElement('button');button.className='mobile-menu-btn';button.id='mobileMenuBtn';button.type='button';button.setAttribute('aria-label','Open menu');button.innerHTML='<span class="menu-line"></span><span class="menu-line"></span><span class="menu-line"></span>';left.insertBefore(button,left.firstChild)}
       if(!left.querySelector('.mobile-header-logo')){
         const img=document.createElement('img');img.className='mobile-header-logo';img.src='./LOGOG.png';img.alt='Alfa Labs';left.insertBefore(img,button.nextSibling);
       }
