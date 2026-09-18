@@ -149,8 +149,14 @@
     document.head.appendChild(hs);
 
     function masterHeader(){
-      const h=document.querySelector('.unified-header');
-      if(!h)return;
+      let h=document.querySelector('.unified-header');
+      if(!h){
+        h=document.createElement('header');h.className='unified-header';
+        const title=document.body.dataset.pageTitle||document.title.replace(/\s*\|.*$/,'')||'Alfa Labs HSE';
+        const subtitle=document.body.dataset.pageSubtitle||'Alfa Labs HSE Management Platform';
+        h.innerHTML='<div class="unified-left"><button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open menu">☰</button><img class="mobile-header-logo" src="./LOGOG.png" alt="Alfa Labs"><div class="unified-title"><h1>'+title+'</h1><p>'+subtitle+'</p></div></div><div class="unified-meta"></div>';
+        const main=document.querySelector('main,.main')||document.body;main.insertBefore(h,main.firstChild);
+      }
       let left=h.querySelector('.unified-left');
       if(!left){left=document.createElement('div');left.className='unified-left';while(h.firstChild)left.appendChild(h.firstChild);h.appendChild(left)}
       let button=left.querySelector('.mobile-menu-btn,#menu');
@@ -184,7 +190,15 @@
       @media(max-width:430px){.footer{padding:6px 4px!important;gap:4px!important}.footer-brand,.footer-copy,.footer-tag,.footer-created{font-size:7px!important;height:20px!important}.footer-created{padding:2px 5px!important}.footer-created-label{margin-right:2px!important}}
     `;document.head.appendChild(fs);
     function buildFooter(){document.querySelectorAll('.footer').forEach(function(f){f.innerHTML='<div class="footer-brand">Alfa Labs</div><div class="footer-copy">Environment, Health &amp; Safety Management</div><div class="footer-created"><span class="footer-created-label">Created</span><span>Hossam Elsharabasy — HSE Manager</span></div><div class="footer-tag">🛡️ Safety First • Safety Is Everyone’s Responsibility</div>';});}
-    buildFooter();
+    function masterFooter(){
+      let f=document.querySelector('.footer');
+      if(!f){
+        const main=document.querySelector('main,.main')||document.body;
+        f=document.createElement('footer');f.className='footer';main.appendChild(f);
+      }
+      f.innerHTML='<div class="footer-brand">Alfa Labs</div><div class="footer-copy">Environment, Health &amp; Safety Management</div><div class="footer-created"><span class="footer-created-label">Created</span><span>Hossam Elsharabasy — HSE Manager</span></div><div class="footer-tag">🛡️ Safety First • Safety Is Everyone’s Responsibility</div>';
+    }
+    buildFooter();masterFooter();
     if(!document.querySelector('script[data-alfa-global-ui]')){const g=document.createElement('script');g.src='./global-ui.js?v=20260918.5';g.async=false;g.dataset.alfaGlobalUi='1';document.head.appendChild(g);}
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
