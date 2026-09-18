@@ -869,7 +869,7 @@ fetch("./capa-data.json").then(r=>{if(!r.ok)throw Error();return r.json()}).then
 <script>
 (function(){function pad(n){return String(n).padStart(2,'0')}function tick(){const el=document.getElementById('liveClock');if(!el)return;const d=new Date(),m=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],hh=d.getHours(),ap=hh>=12?'PM':'AM',h=hh%12||12;el.textContent='Today • '+pad(d.getDate())+' '+m[d.getMonth()]+' '+d.getFullYear()+' • '+pad(h)+':'+pad(d.getMinutes())+':'+pad(d.getSeconds())+' '+ap}tick();setInterval(tick,1000)})();
 </script>
-<script src="./sidebar-standard.js"></script>
+<script src="./sidebar-standard.js?v=20260918.6"></script>
 </body>
 </html>
 <style>
