@@ -3,7 +3,7 @@
   function init(){
     /* Global access gate: every Sidebar page is protected by the same auth layer. */
     if(!document.querySelector('script[data-alfa-auth]')){
-      const a=document.createElement('script');a.src='./auth.js?v=20260918.4';a.async=false;a.dataset.alfaAuth='1';document.head.appendChild(a);
+      const a=document.createElement('script');a.src='./auth.js?v=20260918.5';a.async=false;a.dataset.alfaAuth='1';document.head.appendChild(a);
     }
     const sidebar=document.querySelector('.sidebar');
     if(!sidebar)return;
@@ -19,24 +19,61 @@
     const overlay=document.querySelector('.sidebar-overlay,.overlay');
     const button=document.querySelector('#mobileMenuBtn,#menu');
     function close(){sidebar.classList.remove('open');if(overlay)overlay.classList.remove('show');if(button)button.setAttribute('aria-expanded','false');document.body.style.overflow='';document.documentElement.style.overflow=''}
-    function open(){sidebar.classList.add('open');if(overlay)overlay.classList.add('show');if(button)button.setAttribute('aria-expanded','true');if(window.innerWidth<=800){document.body.style.overflow='hidden';document.documentElement.style.overflow='hidden'}}
-    function toggle(e){if(e){e.preventDefault();e.stopImmediatePropagation()}sidebar.classList.contains('open')?close():open()}
-    /* Capture-phase handler prevents duplicate legacy click/touch handlers from toggling twice. */
-    if(button && button.dataset.masterSidebarHandler!=='1'){
-      button.dataset.masterSidebarHandler='1';
-      button.addEventListener('click',toggle,true);
-      button.addEventListener('pointerup',function(e){e.preventDefault();e.stopImmediatePropagation()},true);
-      button.addEventListener('touchend',function(e){e.preventDefault();e.stopImmediatePropagation()},true);
+    function open(){sidebar.classList.add('open');if(overlay)overlay.classList.add('show');if(window.innerWidth<=800){document.body.style.overflow='hidden';document.documentElement.style.overflow='hidden'}}
+    function toggle(e){if(e){e.preventDefault();e.stopPropagation()}sidebar.classList.contains('open')?close():open()}
+    /* SINGLE mobile-menu owner: overwrite legacy page onclick handlers so every page uses this controller. */
+    if(button){
+      button.onclick=toggle;
+      button.ontouchstart=null;
+      button.ontouchend=null;
+      button.onpointerup=null;
+      button.setAttribute('aria-controls','sidebar');
+      button.setAttribute('aria-expanded',sidebar.classList.contains('open')?'true':'false');
     }
-    if(overlay && overlay.dataset.masterSidebarHandler!=='1'){
-      overlay.dataset.masterSidebarHandler='1';
-      overlay.addEventListener('click',function(e){e.preventDefault();e.stopImmediatePropagation();close()},true);
-      overlay.addEventListener('pointerup',function(e){e.preventDefault();e.stopImmediatePropagation()},true);
-      overlay.addEventListener('touchend',function(e){e.preventDefault();e.stopImmediatePropagation()},true);
+    if(overlay){
+      overlay.onclick=function(e){if(e){e.preventDefault();e.stopPropagation()}close()};
+      overlay.ontouchstart=null;
+      overlay.ontouchend=null;
+      overlay.onpointerup=null;
     }
     sidebar.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){if(window.innerWidth<=800)close()})});
     window.addEventListener('resize',function(){if(window.innerWidth>800)close()});
     window.addEventListener('orientationchange',function(){setTimeout(function(){if(window.innerWidth>800)close()},100)});
+    const ms=document.createElement('style');ms.id='global-mobile-drawer-final';ms.textContent=`
+      @media(max-width:800px){
+        html,body{width:100%;max-width:100%;overflow-x:hidden!important}
+        .sidebar{
+          position:fixed!important;left:0!important;right:auto!important;top:0!important;
+          bottom:0!important;width:min(285px,84vw)!important;height:100dvh!important;min-height:100vh!important;
+          z-index:2000!important;overflow-y:auto!important;overflow-x:hidden!important;
+          -webkit-overflow-scrolling:touch!important;
+          transform:translate3d(-110%,0,0)!important;-webkit-transform:translate3d(-110%,0,0)!important;
+          visibility:hidden!important;pointer-events:none!important;
+          transition:transform .22s ease,-webkit-transform .22s ease!important;
+        }
+        .sidebar.open{
+          transform:translate3d(0,0,0)!important;-webkit-transform:translate3d(0,0,0)!important;
+          visibility:visible!important;pointer-events:auto!important;
+        }
+        .sidebar-overlay,.overlay{
+          position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;
+          min-height:100vh!important;background:rgba(4,22,40,.55)!important;
+          z-index:1990!important;display:none!important;touch-action:none!important;
+        }
+        .sidebar-overlay.show,.overlay.show{display:block!important}
+        .mobile-menu-btn,#menu{
+          display:grid!important;place-items:center!important;position:relative!important;z-index:2010!important;
+          width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important;
+          padding:0!important;margin:0!important;border:0!important;cursor:pointer!important;
+          touch-action:manipulation!important;-webkit-tap-highlight-color:transparent!important;
+          user-select:none!important;-webkit-user-select:none!important;
+        }
+      }
+      @media(max-width:430px){
+        .mobile-menu-btn,#menu{width:42px!important;height:42px!important;min-width:42px!important;min-height:42px!important}
+      }
+    `;
+    document.head.appendChild(ms);
     const fs=document.createElement('style');fs.id='global-slim-footer';fs.textContent=`
       .footer{width:100%!important;box-sizing:border-box!important;margin:18px 0 0!important;background:#082b52!important;color:#fff!important;padding:8px 18px!important;min-height:0!important;height:auto!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:16px!important;flex-wrap:nowrap!important;border-top:1px solid rgba(255,255,255,.12)!important;text-align:center!important;line-height:1.2!important}
       .footer-brand,.footer-copy,.footer-tag,.footer-created{margin:0!important;padding:0!important;white-space:nowrap!important;display:inline-flex!important;align-items:center!important;height:26px!important;box-sizing:border-box!important}
@@ -49,7 +86,7 @@
     `;document.head.appendChild(fs);
     function buildFooter(){document.querySelectorAll('.footer').forEach(function(f){f.innerHTML='<div class="footer-brand">Alfa Labs</div><div class="footer-copy">Environment, Health &amp; Safety Management</div><div class="footer-created"><span class="footer-created-label">Created</span><span>Hossam Elsharabasy — HSE Manager</span></div><div class="footer-tag">🛡️ Safety First • Safety Is Everyone’s Responsibility</div>';});}
     buildFooter();
-    if(!document.querySelector('script[data-alfa-global-ui]')){const g=document.createElement('script');g.src='./global-ui.js?v=20260918.4';g.async=false;g.dataset.alfaGlobalUi='1';document.head.appendChild(g);}
+    if(!document.querySelector('script[data-alfa-global-ui]')){const g=document.createElement('script');g.src='./global-ui.js?v=20260918.5';g.async=false;g.dataset.alfaGlobalUi='1';document.head.appendChild(g);}
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
