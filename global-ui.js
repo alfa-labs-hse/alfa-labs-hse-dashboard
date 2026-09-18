@@ -30,7 +30,85 @@ function chartTheme(dark){
 function applyTheme(){let dark=localStorage.getItem('alfaLabsTheme')==='dark';document.documentElement.classList.toggle('hse-dark',dark);document.body.dataset.hseTheme=dark?'dark':'light';let b=document.getElementById('hse-theme-btn');if(b)b.textContent=dark?'☀️ Light':'🌙 Dark';chartTheme(dark);window.dispatchEvent(new CustomEvent('hseThemeChanged',{detail:{dark}}))}
 function applyLang(){let lang=localStorage.getItem('alfaLabsLang')||'en';document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.body.dataset.hseLang=lang;translate(lang);let b=document.getElementById('hse-lang-btn');if(b)b.textContent=lang==='ar'?'EN':'عربي'}
 function addControls(){if(document.getElementById('hse-global-controls'))return;let w=document.createElement('div');w.id='hse-global-controls';w.innerHTML='<button id="hse-lang-btn" type="button">عربي</button><button id="hse-theme-btn" type="button">🌙 Dark</button>';let host=document.querySelector('.unified-meta,.header-actions,.user');if(host)host.appendChild(w);else document.body.appendChild(w);let b=document.getElementById('hse-lang-btn');b.onclick=()=>{localStorage.setItem('alfaLabsLang',(localStorage.getItem('alfaLabsLang')||'en')==='en'?'ar':'en');applyLang()};document.getElementById('hse-theme-btn').onclick=()=>{localStorage.setItem('alfaLabsTheme',(localStorage.getItem('alfaLabsTheme')||'light')==='light'?'dark':'light');applyTheme()};addWeather()}
-async function addWeather(){if(document.getElementById('alfa-weather'))return;const host=document.querySelector('.unified-meta,.header-actions,.user');if(!host)return;const box=document.createElement('div');box.id='alfa-weather';box.innerHTML='<span class="wx-icon">🌙</span><span><span class="wx-temp">--°C</span><br><span class="wx-place">Cairo, Egypt</span></span><span class="wx-extra">Updating…</span>';host.insertBefore(box,host.firstChild);async function load(){try{const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=30.0444&longitude=31.2357&current=temperature_2m,apparent_temperature,precipitation,rain,showers,snowfall,weather_code,wind_speed_10m,wind_direction_10m&timezone=Africa%2FCairo',{cache:'no-store'});if(!r.ok)throw 0;const d=await r.json(),x=d.current||{},temp=Math.round(Number(x.temperature_2m)),code=Number(x.weather_code||0),rain=Number(x.rain||0)+Number(x.showers||0),wind=Math.round(Number(x.wind_speed_10m||0));const icon=(code>=51&&code<=67)||(code>=80&&code<=82)?'🌧️':(code>=95?'⛈️':(code>=1&&code<=3?'⛅':'☀️'));const period=(new Date()).getHours()>=18||(new Date()).getHours()<6?'🌙':'☀️';box.querySelector('.wx-icon').textContent=period+' '+icon;box.querySelector('.wx-temp').textContent=temp+'°C';let extra=wind+' km/h';if(rain>0)extra+=' • 🌧️ '+rain.toFixed(1)+' mm';box.querySelector('.wx-extra').textContent=extra;}catch(e){box.querySelector('.wx-extra').textContent='Weather unavailable'}}load();setInterval(load,15*60*1000)}
+async function addWeather(){
+  if(document.getElementById('alfa-weather'))return;
+  const host=document.querySelector('.unified-meta,.header-actions,.user');
+  if(!host)return;
+
+  const box=document.createElement('div');
+  box.id='alfa-weather';
+  box.innerHTML='<span class="wx-icon">🌤️</span><span><span class="wx-temp">--°C</span><br><span class="wx-place">Detecting location…</span></span><span class="wx-extra">Updating…</span>';
+  host.insertBefore(box,host.firstChild);
+
+  const fallback={lat:30.0444,lon:31.2357,place:'Cairo, Egypt',timezone:'Africa/Cairo'};
+  let locationData=fallback;
+
+  const setText=(sel,value)=>{const e=box.querySelector(sel);if(e)e.textContent=value};
+  const weatherIcon=(code,isNight)=>{
+    if(code>=95)return '⛈️';
+    if((code>=51&&code<=67)||(code>=80&&code<=82))return '🌧️';
+    if(code===45||code===48)return '🌫️';
+    if(code>=1&&code<=3)return isNight?'🌙':'⛅';
+    return isNight?'🌙':'☀️';
+  };
+
+  async function reverseGeocode(lat,lon){
+    try{
+      const r=await fetch('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude='+encodeURIComponent(lat)+'&longitude='+encodeURIComponent(lon)+'&localityLanguage=en',{cache:'no-store'});
+      if(!r.ok)throw 0;
+      const d=await r.json();
+      const city=d.city||d.locality||d.principalSubdivision||d.localityInfo?.administrative?.[0]?.name;
+      const country=d.countryName;
+      return city?(country?city+', '+country:city):null;
+    }catch(e){return null}
+  }
+
+  async function getUserLocation(){
+    if(!navigator.geolocation)return fallback;
+    return await new Promise(resolve=>{
+      navigator.geolocation.getCurrentPosition(
+        async p=>{
+          const lat=Number(p.coords.latitude),lon=Number(p.coords.longitude);
+          if(!Number.isFinite(lat)||!Number.isFinite(lon)){resolve(fallback);return}
+          const place=await reverseGeocode(lat,lon);
+          resolve({lat,lon,place:place||'Current location',timezone:null});
+        },
+        ()=>resolve(fallback),
+        {enableHighAccuracy:false,timeout:8000,maximumAge:10*60*1000}
+      );
+    });
+  }
+
+  async function load(){
+    try{
+      if(locationData===fallback) locationData=await getUserLocation();
+      const tz=locationData.timezone?'&timezone='+encodeURIComponent(locationData.timezone):'&timezone=auto';
+      const url='https://api.open-meteo.com/v1/forecast?latitude='+encodeURIComponent(locationData.lat)+'&longitude='+encodeURIComponent(locationData.lon)+'&current=temperature_2m,apparent_temperature,precipitation,rain,showers,snowfall,weather_code,wind_speed_10m,wind_direction_10m'+tz;
+      const r=await fetch(url,{cache:'no-store'});
+      if(!r.ok)throw 0;
+      const d=await r.json(),x=d.current||{};
+      const temp=Math.round(Number(x.temperature_2m));
+      const feels=Math.round(Number(x.apparent_temperature));
+      const code=Number(x.weather_code||0);
+      const rain=Number(x.rain||0)+Number(x.showers||0);
+      const wind=Math.round(Number(x.wind_speed_10m||0));
+      const isNight=typeof x.is_day==='number'?x.is_day===0:(new Date()).getHours()>=18||(new Date()).getHours()<6;
+      setText('.wx-icon',weatherIcon(code,isNight));
+      setText('.wx-temp',Number.isFinite(temp)?temp+'°C':'--°C');
+      setText('.wx-place',locationData.place||'Current location');
+      let extra=Number.isFinite(feels)?'Feels '+feels+'°C • '+wind+' km/h':wind+' km/h';
+      if(rain>0)extra+=' • 🌧️ '+rain.toFixed(1)+' mm';
+      setText('.wx-extra',extra);
+    }catch(e){
+      setText('.wx-temp','--°C');
+      setText('.wx-extra','Weather unavailable');
+      setText('.wx-place',locationData.place||'Cairo, Egypt');
+    }
+  }
+
+  await load();
+  setInterval(load,15*60*1000);
+}
 function style(){if(document.getElementById('hse-global-ui-style'))return;let s=document.createElement('style');s.id='hse-global-ui-style';s.textContent=`
 #hse-global-controls{display:flex;align-items:center;gap:9px;margin-left:8px;position:relative;z-index:2;direction:ltr;flex:0 0 auto}#hse-global-controls button{border:1px solid #cbd9e6;background:#f6f9fc;color:#17365d;border-radius:11px;padding:10px 14px;min-width:72px;min-height:40px;font:800 13px Arial;cursor:pointer;white-space:nowrap;transition:.18s;box-shadow:0 2px 7px rgba(20,55,90,.10)}#hse-global-controls button:hover{transform:translateY(-1px);background:#fff;border-color:#aebfd0;box-shadow:0 4px 12px rgba(20,55,90,.14)}\n#hse-global-controls #hse-lang-btn{font-weight:900;font-size:14px;letter-spacing:.1px;text-shadow:0 0 .3px currentColor}
 html.hse-dark body{background:#0b1522!important;color:#e4edf7!important}html.hse-dark .unified-header,html.hse-dark .header,html.hse-dark .topbar{background:#101d2c!important;border-color:#26394d!important}html.hse-dark .unified-title h1,html.hse-dark .unified-title h2,html.hse-dark .header h2,html.hse-dark .title h1{color:#eaf2fb!important}html.hse-dark .unified-title p,html.hse-dark .header p,html.hse-dark .title p,html.hse-dark .update-status,html.hse-dark .live-clock{color:#b8c8d8!important}html.hse-dark .live-clock,html.hse-dark .date-box{background:#172638!important;border-color:#2a4056!important}
