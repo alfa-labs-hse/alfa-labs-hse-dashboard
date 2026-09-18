@@ -468,12 +468,8 @@ html{scroll-behavior:smooth}body{font-family:Arial,Tahoma,sans-serif;background:
 </section>
 </main>
 <script>
-(function(){
-  const sidebar=document.getElementById('sidebar'),overlay=document.getElementById('sidebarOverlay'),button=document.getElementById('mobileMenuBtn');
-  function closeMenu(){sidebar.classList.remove('open');overlay.classList.remove('show');button.setAttribute('aria-expanded','false');document.body.style.overflow=''}
-  function openMenu(){sidebar.classList.add('open');overlay.classList.add('show');button.setAttribute('aria-expanded','true');document.body.style.overflow='hidden'}
-  button.addEventListener('click',()=>sidebar.classList.contains('open')?closeMenu():openMenu());overlay.addEventListener('click',closeMenu);sidebar.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{if(innerWidth<=700)closeMenu()}));addEventListener('resize',()=>{if(innerWidth>700)closeMenu()});
-})();
+/* Mobile menu is controlled by sidebar-standard.js. */
+</script>
 
 function norm(v){return String(v??'').trim().toLowerCase()}
 function riskKey(v){let s=norm(v);if(s.includes('critical')||s.includes('حرج'))return'Critical';if(s.includes('high')||s.includes('عالي'))return'High';if(s.includes('medium')||s.includes('متوسط'))return'Medium';if(s.includes('low')||s.includes('منخفض'))return'Low';return''}
