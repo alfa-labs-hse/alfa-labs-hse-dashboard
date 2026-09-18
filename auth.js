@@ -10,7 +10,8 @@ if(window.__ALFA_AUTH__)return; window.__ALFA_AUTH__=true;
 const CONFIG={
   allowedDomain:'@alfalabs.com',
   users:[
-    {email:'hossam.elsharabasy@alfalabs.com',role:'admin'}
+    {email:'hossam.elsharabasy@alfalabs.com',role:'admin'},
+    {email:'mohamed.nasr@alfascan.com',role:'viewer',expiresAt:1789774860000}
   ],
   sessionKey:'alfaLabsAuthSession'
 };
@@ -19,12 +20,16 @@ function getSession(){
   try{return JSON.parse(sessionStorage.getItem(CONFIG.sessionKey)||'null')}catch(e){return null}
 }
 function setSession(email,role){
-  sessionStorage.setItem(CONFIG.sessionKey,JSON.stringify({email:email,role:role,loginAt:Date.now()}));
+  const u=CONFIG.users.find(x=>x.email.toLowerCase()===String(email||'').trim().toLowerCase());
+  sessionStorage.setItem(CONFIG.sessionKey,JSON.stringify({email:email,role:role,loginAt:Date.now(),expiresAt:u&&u.expiresAt?u.expiresAt:null}));
 }
 function clearSession(){sessionStorage.removeItem(CONFIG.sessionKey)}
 function isAllowed(email){
   const e=String(email||'').trim().toLowerCase();
-  return e.endsWith(CONFIG.allowedDomain)&&CONFIG.users.some(u=>u.email.toLowerCase()===e);
+  const u=CONFIG.users.find(x=>x.email.toLowerCase()===e);
+  if(!u)return false;
+  if(u.expiresAt&&Date.now()>=u.expiresAt)return false;
+  return e.endsWith(CONFIG.allowedDomain)||e==='mohamed.nasr@alfascan.com';
 }
 function roleFor(email){
   const e=String(email||'').trim().toLowerCase();
@@ -36,7 +41,7 @@ function guard(){
   const path=(location.pathname.split('/').pop()||'index.html').toLowerCase();
   if(path==='login.html')return true;
   const s=getSession();
-  if(!s||!isAllowed(s.email)){
+  if(!s||!isAllowed(s.email)||(s.expiresAt&&Date.now()>=s.expiresAt)){
     clearSession();
     location.replace('./login.html?return='+encodeURIComponent(location.href));
     return false;
