@@ -170,6 +170,256 @@ html{scroll-behavior:smooth}body{font-family:Arial,Tahoma,sans-serif;background:
 <script id="unified-footer-content">
 (function(){function fix(){document.querySelectorAll('.footer').forEach(function(f){f.innerHTML='<div class="footer-brand">جميع الحقوق محفوظة لـ الفا لاب</div><div class="footer-copy">إدارة البيئة والسلامة والصحة المهنية<br><small>Created by Hossam Elsharabasy — HSE Manager</small></div><div class="footer-tag">🛡️ Safety First • Safety Is Everyone’s Responsibility</div>';});}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fix);else fix();setTimeout(fix,300);}());
 </script>
+<style id="mobile-symmetry-final">
+/* MOBILE SYMMETRY FINAL — Alfa Labs HSE Dashboard */
+@media (max-width:700px){
+  html,body{width:100%;max-width:100%;overflow-x:hidden}
+  body{background:#f4f7fb}
+
+  /* Clean, predictable 3-zone header */
+  .unified-header{
+    position:relative!important;
+    display:block!important;
+    width:100%!important;
+    min-height:0!important;
+    height:auto!important;
+    padding:12px 14px 14px!important;
+    background:#fff!important;
+    border-bottom:1px solid #e3eaf1!important;
+    box-shadow:0 2px 10px rgba(23,54,93,.05)!important;
+  }
+  .unified-left{
+    width:100%!important;
+    min-width:0!important;
+    display:grid!important;
+    grid-template-columns:44px 44px minmax(0,1fr)!important;
+    align-items:center!important;
+    gap:8px!important;
+  }
+  .mobile-menu-btn{
+    width:44px!important;
+    height:44px!important;
+    margin:0!important;
+    border-radius:10px!important;
+    display:grid!important;
+    place-items:center!important;
+    padding:0!important;
+  }
+  .mobile-header-logo{
+    display:block!important;
+    width:44px!important;
+    height:44px!important;
+    flex:none!important;
+    margin:0!important;
+    border-radius:9px!important;
+    padding:4px!important;
+    object-fit:contain!important;
+  }
+  .unified-title{
+    min-width:0!important;
+    width:100%!important;
+    padding:0!important;
+    text-align:left!important;
+  }
+  .unified-title h1,.unified-title h2{
+    margin:0!important;
+    font-size:18px!important;
+    line-height:1.18!important;
+    font-weight:800!important;
+    white-space:normal!important;
+    overflow:visible!important;
+    text-overflow:clip!important;
+    color:#17365d!important;
+  }
+  .unified-title p{
+    margin:3px 0 0!important;
+    font-size:9px!important;
+    line-height:1.3!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    color:#71808e!important;
+  }
+
+  /* Meta widgets get their own balanced rows instead of fighting the title. */
+  .unified-meta{
+    width:100%!important;
+    min-width:0!important;
+    margin-top:10px!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+    grid-template-areas:
+      "weather clock"
+      "status controls"!important;
+    align-items:center!important;
+    gap:7px!important;
+    direction:ltr!important;
+  }
+  #alfa-weather{
+    grid-area:weather!important;
+    width:100%!important;
+    min-width:0!important;
+    max-width:none!important;
+    height:50px!important;
+    padding:6px 9px!important;
+    border-radius:12px!important;
+    justify-content:center!important;
+    gap:6px!important;
+  }
+  #alfa-weather .wx-icon{font-size:20px!important}
+  #alfa-weather .wx-temp{font-size:14px!important}
+  #alfa-weather .wx-place{font-size:9px!important}
+  #alfa-weather .wx-extra{font-size:8px!important}
+
+  .live-clock{
+    grid-area:clock!important;
+    width:100%!important;
+    height:50px!important;
+    min-width:0!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    padding:6px 7px!important;
+    border-radius:12px!important;
+    font-size:10px!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+  .update-status{
+    grid-area:status!important;
+    min-width:0!important;
+    justify-content:center!important;
+    font-size:9px!important;
+    height:38px!important;
+  }
+  #hse-global-controls{
+    grid-area:controls!important;
+    width:100%!important;
+    min-width:0!important;
+    margin:0!important;
+    justify-content:stretch!important;
+    gap:6px!important;
+  }
+  #hse-global-controls button{
+    flex:1 1 0!important;
+    width:0!important;
+    min-width:0!important;
+    height:38px!important;
+    min-height:38px!important;
+    padding:7px 8px!important;
+    border-radius:10px!important;
+    font-size:11px!important;
+  }
+
+  /* Remove the old/accidental account row if present on mobile. */
+  .unified-header .user,.unified-header .user-info,.unified-header .auth-user,
+  .unified-header .admin-user,.unified-header .login-user{
+    width:100%!important;
+    margin:7px 0 0!important;
+    text-align:center!important;
+  }
+
+  /* Content rhythm */
+  .content{
+    width:100%!important;
+    max-width:100%!important;
+    padding:14px!important;
+  }
+  .executive-banner{
+    width:100%!important;
+    min-height:118px!important;
+    margin:0 0 14px!important;
+    padding:16px!important;
+    border-radius:14px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    gap:10px!important;
+  }
+  .executive-banner h2{
+    font-size:19px!important;
+    line-height:1.2!important;
+    margin-bottom:6px!important;
+  }
+  .executive-banner p{
+    font-size:10px!important;
+    line-height:1.55!important;
+    max-width:220px!important;
+  }
+  .executive-banner .ebadge{
+    flex:0 0 auto!important;
+    font-size:8px!important;
+    padding:7px 8px!important;
+    border-radius:9px!important;
+  }
+
+  .welcome{margin:0 0 13px!important}
+  .welcome h2{font-size:23px!important;line-height:1.25!important}
+  .welcome p{font-size:12px!important;line-height:1.45!important}
+  .data-status{
+    width:100%!important;
+    margin-top:10px!important;
+    justify-content:center!important;
+    text-align:center!important;
+    padding:9px 10px!important;
+    font-size:10px!important;
+  }
+  .section-label{font-size:11px!important;margin-bottom:9px!important}
+
+  .kpis{
+    width:100%!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:10px!important;
+    margin-bottom:14px!important;
+  }
+  .kpi{
+    min-width:0!important;
+    min-height:148px!important;
+    padding:13px!important;
+    border-radius:14px!important;
+  }
+  .kpi-top{gap:5px!important}
+  .kpi-label{font-size:11px!important;line-height:1.25!important}
+  .kpi-icon{width:34px!important;height:34px!important;font-size:16px!important;border-radius:10px!important}
+  .kpi-value{font-size:31px!important;line-height:1!important;margin-top:11px!important}
+  .kpi-sub{font-size:9px!important;line-height:1.3!important;margin-top:7px!important}
+  .kpi-link{font-size:9px!important;margin-top:7px!important}
+
+  .insight-grid{width:100%!important;grid-template-columns:1fr!important;gap:10px!important;margin-top:10px!important}
+  .card{
+    width:100%!important;
+    min-width:0!important;
+    padding:14px!important;
+    border-radius:14px!important;
+  }
+  .card-title{margin-bottom:12px!important}
+  .card-title h3{font-size:16px!important}
+  .card-title span{font-size:9px!important}
+  .bar-chart{height:205px!important}
+  .status-area{grid-template-columns:1fr!important;gap:10px!important}
+  .donut{width:145px!important;height:145px!important}
+  .actions{grid-template-columns:1fr!important;gap:8px!important}
+  .snapshot-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+  .snapshot{min-width:0!important;padding:10px!important;border-radius:12px!important}
+  .quick{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+  .quick a{min-width:0!important;padding:11px 8px!important;font-size:11px!important}
+}
+@media (max-width:390px){
+  .unified-header{padding-left:11px!important;padding-right:11px!important}
+  .unified-left{grid-template-columns:42px 42px minmax(0,1fr)!important;gap:7px!important}
+  .mobile-menu-btn,.mobile-header-logo{width:42px!important;height:42px!important}
+  .unified-title h1,.unified-title h2{font-size:16px!important}
+  .unified-title p{font-size:8px!important}
+  .unified-meta{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
+  #alfa-weather,.live-clock{height:47px!important}
+  .content{padding:12px!important}
+  .executive-banner{min-height:112px!important;padding:14px!important}
+  .executive-banner h2{font-size:18px!important}
+  .executive-banner p{font-size:9px!important}
+  .kpi{min-height:142px!important;padding:11px!important}
+  .kpi-value{font-size:29px!important}
+}
+</style>
 </head>
 <body>
 <aside class="sidebar" id="sidebar">
@@ -195,8 +445,6 @@ html{scroll-behavior:smooth}body{font-family:Arial,Tahoma,sans-serif;background:
 <header class="unified-header"><div class="unified-left"><button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="فتح القائمة" aria-expanded="false">☰</button><img class="mobile-header-logo" src="./LOGOG.png" alt="Alfa Labs"><div class="unified-title"><h2>HSE Management Dashboard</h2><p>Alfa Labs HSE Management Platform</p></div></div><div class="unified-meta"><span id="dateBox" style="display:none"></span><div class="live-clock" id="liveClock">Today • -- --- ---- • --:--:--</div><div class="update-status"><span class="update-dot"></span><span>Last updated today</span></div></div></header>
 <section class="content">
   <div class="executive-banner"><div><h2>Executive HSE Overview</h2><p>CAPA performance and Training activity in one clear management view.</p></div><div class="ebadge">LIVE DATA • ALFA LABS</div></div>
-<div class="executive-banner"><div><h2>Executive HSE Overview</h2><p>CAPA performance and Training activity in one clear management view.</p></div><div class="ebadge">LIVE DATA • ALFA LABS</div></div>
-<div class="executive-banner"><div><h2>Executive HSE Overview</h2><p>CAPA performance and Training activity in one clear management view.</p></div><div class="ebadge">LIVE DATA • ALFA LABS</div></div>
 <div class="welcome"><div><h2>HSE Performance 👋</h2><p>Key indicators and management actions at a glance</p></div><div class="data-status"><span class="status-dot"></span><span id="dataStatus">Connecting to live data…</span></div></div>
 <div class="section-label">HSE PERFORMANCE — LIVE</div>
 <div class="kpis">
