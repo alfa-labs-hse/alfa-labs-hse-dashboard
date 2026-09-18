@@ -3,11 +3,11 @@
   function init(){
     /* Global access gate: every Sidebar page is protected by the same auth layer. */
     if(!document.querySelector('script[data-alfa-auth]')){
-      const a=document.createElement('script');a.src='./auth.js?v=20260918';a.async=false;a.dataset.alfaAuth='1';document.head.appendChild(a);
+      const a=document.createElement('script');a.src='./auth.js?v=20260918.2';a.async=false;a.dataset.alfaAuth='1';document.head.appendChild(a);
     }
     const sidebar=document.querySelector('.sidebar');
     if(!sidebar)return;
-    const links=[['index.html','🏠','Home'],['capa.html','📋','CAPA'],['training.html','🎓','Training'],['#','👁️','Safety Observations'],['#','🚨','Incidents'],['#','⚠️','Near Miss'],['#','🔍','Inspections'],['#','🔥','Fire Safety'],['#','🩹','First Aid'],['#','📚','HSE Library'],['#','🏆','Achievements'],['#','📸','HSE Activities'],['#','📊','Analytics'],['#','📄','Reports'],['#','⚙️','Settings']];
+    const links=[['index.html','🏠','Home'],['capa.html','📋','CAPA'],['training.html','🎓','Training'],['#','👁️','Safety Observations'],['#','🚨','Incidents'],['#','⚠️','Near Miss'],['#','🔍','Inspections'],['#','🔥','Fire Safety'],['#','🩹','First Aid'],['hse-portal.html#library','📚','HSE Library'],['hse-portal.html#achievements','🏆','Achievements'],['hse-portal.html#activities','📸','HSE Activities'],['#','📊','Analytics'],['#','📄','Reports'],['#','⚙️','Settings']];
     const path=(location.pathname.split('/').pop()||'index.html').toLowerCase();
     sidebar.innerHTML='<div class="master-sidebar-brand"><img src="./LOGOG.png" alt="Alfa Labs Logo"><strong>Alfa Labs</strong><span>Alfa Labs • HSE Platform</span></div><nav class="master-sidebar-nav">'+links.map(function(x){const active=x[0]===path?' active':'';return '<a class="master-sidebar-link'+active+'" href="'+x[0]+'"><span class="master-sidebar-icon">'+x[1]+'</span><span>'+x[2]+'</span></a>'}).join('')+'</nav>';
     const style=document.createElement('style');style.id='master-sidebar-style';style.textContent=`
@@ -32,7 +32,7 @@
     `;document.head.appendChild(fs);
     function buildFooter(){document.querySelectorAll('.footer').forEach(function(f){f.innerHTML='<div class="footer-brand">Alfa Labs</div><div class="footer-copy">Environment, Health &amp; Safety Management</div><div class="footer-created"><span class="footer-created-label">Created</span><span>Hossam Elsharabasy — HSE Manager</span></div><div class="footer-tag">🛡️ Safety First • Safety Is Everyone’s Responsibility</div>';});}
     buildFooter();
-    if(!document.querySelector('script[data-alfa-global-ui]')){const g=document.createElement('script');g.src='./global-ui.js?v=20260918';g.async=false;g.dataset.alfaGlobalUi='1';document.head.appendChild(g);}
+    if(!document.querySelector('script[data-alfa-global-ui]')){const g=document.createElement('script');g.src='./global-ui.js?v=20260918.2';g.async=false;g.dataset.alfaGlobalUi='1';document.head.appendChild(g);}
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
