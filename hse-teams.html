@@ -9,107 +9,90 @@
 :root{--navy:#082b52;--blue:#1976d2;--green:#16845b;--red:#d92d3a;--orange:#f59e0b;--bg:#f4f7fb;--card:#fff;--border:#e1e8f0;--muted:#6f8194;--text:#17365d}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Arial,sans-serif;color:var(--text)}
 .main{min-height:100vh}.content{padding:24px 28px 30px;max-width:1600px;margin:auto}
-.hero{background:linear-gradient(135deg,#082b52,#1976d2);color:#fff;border-radius:16px;padding:24px 26px;margin-bottom:18px;box-shadow:0 10px 26px rgba(8,43,82,.14)}
-.hero h2{margin:0 0 7px;font-size:25px}.hero p{margin:0;color:#dbeafe;font-size:13px;line-height:1.5}
-.filters,.kpi,.table-card,.member-card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 5px 18px rgba(20,55,90,.06)}
-.filters{padding:15px 17px;margin-bottom:16px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}.filters label{font-size:12px;font-weight:800;color:#536b83}.filters input,.filters select{border:1px solid #ccd8e5;border-radius:9px;padding:9px 11px;background:#fff;color:var(--text);font-weight:700}
+.hero{background:linear-gradient(135deg,#082b52,#1976d2);color:#fff;border-radius:16px;padding:24px 26px;margin-bottom:18px;box-shadow:0 10px 26px rgba(8,43,82,.14)}.hero h2{margin:0 0 7px;font-size:25px}.hero p{margin:0;color:#dbeafe;font-size:13px;line-height:1.5}
+.filters,.kpi,.table-card,.detail-card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 5px 18px rgba(20,55,90,.06)}
+.filters{padding:15px 17px;margin-bottom:16px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}.filters label{font-size:12px;font-weight:800;color:#536b83}.filters input,.filters select{border:1px solid #ccd8e5;border-radius:9px;padding:9px 11px;background:#fff;color:var(--text);font-weight:700}.filters select{min-width:260px}
 .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:18px}.kpi{padding:17px}.kpi small{display:block;color:var(--muted);font-weight:800;font-size:11px;margin-bottom:8px}.kpi strong{font-size:28px;display:block}.kpi.k-total strong{color:var(--blue)}.kpi.k-open strong{color:var(--red)}.kpi.k-progress strong{color:var(--orange)}.kpi.k-closed strong{color:var(--green)}
+.detail-card{padding:18px;margin-bottom:18px}.detail-head{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:16px}.detail-head h3{margin:0;font-size:18px}.detail-head span{font-size:11px;color:var(--muted);font-weight:800}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.chart-box{border:1px solid var(--border);border-radius:12px;padding:15px;background:#fbfdff}.chart-title{font-size:13px;font-weight:900;margin-bottom:12px}.bars{display:flex;flex-direction:column;gap:11px}.bar-row{display:grid;grid-template-columns:125px 1fr 48px;gap:9px;align-items:center}.bar-label{font-size:11px;font-weight:800;color:#526b82}.track{height:12px;background:#eaf0f6;border-radius:99px;overflow:hidden}.fill{height:100%;border-radius:99px}.fill.blue{background:#1976d2}.fill.red{background:#d92d3a}.fill.orange{background:#f59e0b}.fill.green{background:#16845b}.bar-value{text-align:right;font-size:12px;font-weight:900}
+.status-chart{display:grid;grid-template-columns:1fr 150px;gap:16px;align-items:center}.status-donut{width:140px;height:140px;border-radius:50%;margin:auto;display:grid;place-items:center;background:conic-gradient(#d92d3a 0 25%,#f59e0b 25% 50%,#16845b 50% 100%)}.status-inner{width:88px;height:88px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex-direction:column}.status-inner strong{font-size:22px}.status-inner small{font-size:9px;color:var(--muted)}
+.legend{display:flex;flex-direction:column;gap:9px}.legend-item{display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:800}.legend-name{display:flex;align-items:center;gap:7px}.legend-dot{width:9px;height:9px;border-radius:50%}.ld-open{background:#d92d3a}.ld-progress{background:#f59e0b}.ld-closed{background:#16845b}
 .table-card{overflow:hidden}.table-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:17px 18px;border-bottom:1px solid var(--border)}.table-head h3{margin:0;font-size:17px}.count{font-size:11px;color:var(--muted);font-weight:800}
-.table-scroll{overflow:auto;max-height:650px;-webkit-overflow-scrolling:touch}table{width:100%;border-collapse:collapse;min-width:1000px;font-size:12px}th{position:sticky;top:0;z-index:2;background:#eef4fa;color:#33445a;text-align:left;padding:12px 10px;white-space:nowrap}td{padding:11px 10px;border-top:1px solid var(--border);vertical-align:middle}tbody tr:hover td{background:#f8fbfe}.name{font-weight:900;color:var(--navy);white-space:nowrap}.num{font-weight:900;text-align:center;font-size:15px}.pill{display:inline-flex;align-items:center;justify-content:center;min-width:44px;padding:5px 9px;border-radius:999px;font-weight:900;font-size:11px}.pill.total{background:#e8f1ff;color:#1266d6}.pill.open{background:#ffeaed;color:#b42331}.pill.progress{background:#fff4dc;color:#a15c00}.pill.closed{background:#e7f7ef;color:#087443}
-.empty{text-align:center;padding:45px;color:var(--muted);font-weight:700}
-.note{font-size:11px;color:var(--muted);margin-top:10px}
-@media(max-width:900px){.content{padding:16px}.kpis{grid-template-columns:repeat(2,1fr)}.hero h2{font-size:21px}}
-@media(max-width:600px){.content{padding:12px}.hero{padding:18px;border-radius:12px}.hero h2{font-size:19px}.hero p{font-size:11px}.filters{align-items:stretch}.filters>*{width:100%}.kpis{grid-template-columns:1fr 1fr;gap:9px}.kpi{padding:13px}.kpi strong{font-size:23px}.table-head{padding:14px}.table-scroll{max-height:560px}}
-@media(max-width:390px){.kpis{grid-template-columns:1fr}.kpi strong{font-size:25px}}
+.table-scroll{overflow:auto;max-height:650px;-webkit-overflow-scrolling:touch}table{width:100%;border-collapse:collapse;min-width:1000px;font-size:12px}th{position:sticky;top:0;z-index:2;background:#eef4fa;color:#33445a;text-align:left;padding:12px 10px;white-space:nowrap}td{padding:11px 10px;border-top:1px solid var(--border);vertical-align:middle}tbody tr:hover td{background:#f8fbfe}.name{font-weight:900;color:var(--navy);white-space:nowrap}.num{font-weight:900;text-align:center;font-size:15px}.pill{display:inline-flex;align-items:center;justify-content:center;min-width:44px;padding:5px 9px;border-radius:999px;font-weight:900;font-size:11px}.pill.total{background:#e8f1ff;color:#1266d6}.pill.open{background:#ffeaed;color:#b42331}.pill.progress{background:#fff4dc;color:#a15c00}.pill.closed{background:#e7f7ef;color:#087443}.empty{text-align:center;padding:45px;color:var(--muted);font-weight:700}.note{font-size:11px;color:var(--muted);margin-top:10px}
+@media(max-width:1100px){.kpis{grid-template-columns:repeat(3,1fr)}.detail-grid{grid-template-columns:1fr}}
+@media(max-width:700px){.content{padding:12px}.hero{padding:18px;border-radius:12px}.hero h2{font-size:19px}.hero p{font-size:11px}.filters{align-items:stretch}.filters>*{width:100%}.filters select{min-width:0}.kpis{grid-template-columns:1fr 1fr;gap:9px}.kpi{padding:13px}.kpi strong{font-size:23px}.detail-card{padding:14px}.detail-head h3{font-size:16px}.status-chart{grid-template-columns:1fr}.status-donut{width:125px;height:125px}.bar-row{grid-template-columns:100px 1fr 40px}.bar-label{font-size:10px}.table-head{padding:14px}.table-scroll{max-height:560px}}
+@media(max-width:390px){.kpis{grid-template-columns:1fr}.bar-row{grid-template-columns:90px 1fr 35px}}
 </style>
-</head>
-<body data-page-title="HSE Teams" data-page-subtitle="Safety Team Performance & KPI Dashboard">
-<aside class="sidebar" id="sidebar"></aside>
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
-<main class="main"></main>
-<script src="./sidebar-standard.js?v=20260919.2"></script><script src="./global-ui.js?v=20260919.2"></script>
 <script>
 const TRAINING_URL="./training-data.json",CAPA_URL="./capa-data.json";
-const C={trainer:"اسم المدرب | Trainer Name",date:"تاريخ التدريب | Training Date",employee:"اسم الموظف | Employee Name"};
+const C={trainer:"اسم المدرب | Trainer Name",employee:"اسم الموظف | Employee Name"};
 let training=[],capa=[],rows=[];
 const clean=v=>String(v??"").trim();
-const uniq=a=>[...new Set(a.map(clean).filter(Boolean))];
+const norm=v=>clean(v).replace(/\s+/g," ").trim();
+const keyName=v=>norm(v).toLowerCase().replace(/[.\-_,،؛:;|/\\()\[\]{}]+/g,"").replace(/\s+/g,"");
+const excludedName=v=>{const k=keyName(v);return !k||k.includes("مدربخارجي")||k.includes("externaltrainer")||k==="external"||k==="trainerexternal"};
+const isOpen=v=>{const s=clean(v).toLowerCase();return s.includes("open")||s.includes("مفتوحة")||s.includes("مفتوح")||s.includes("in progress")||s.includes("قيد التنفيذ")};
+const isProgress=v=>{const s=clean(v).toLowerCase();return s.includes("in progress")||s.includes("قيد التنفيذ")};
+const isClosed=v=>{const s=clean(v).toLowerCase();return s.includes("closed")||s.includes("مغلقة")||s.includes("مغلق")};
 function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
-function isOpen(v){const s=clean(v).toLowerCase();return s.includes("open")||s.includes("مفتوحة")||s.includes("in progress")||s.includes("قيد التنفيذ")}
-function isProgress(v){const s=clean(v).toLowerCase();return s.includes("in progress")||s.includes("قيد التنفيذ")}
-function normalizeName(v){return clean(v).replace(/\s+/g," ")}
 function build(){
-  const trainers={};
+  const trainers={},cap={},displayNames={};
   training.forEach(r=>{
-    const n=normalizeName(r[C.trainer]);const e=normalizeName(r[C.employee]);
-    if(!n||!e)return;
-    trainers[n]??={trainingEmployees:new Set(),trainingRecords:0};
-    trainers[n].trainingEmployees.add(e);trainers[n].trainingRecords++;
+    const n=norm(r[C.trainer]);const k=keyName(n);const e=norm(r[C.employee]);
+    if(excludedName(n)||!e)return;
+    displayNames[k]??=n;trainers[k]??={name:n,employees:new Set(),records:0};
+    trainers[k].employees.add(e);trainers[k].records++;
   });
-  const cap={};
   capa.forEach(r=>{
-    const n=normalizeName(r.responsibility);if(!n)return;
-    cap[n]??={total:0,open:0,progress:0,closed:0};
-    cap[n].total++;
-    if(isProgress(r.status))cap[n].progress++;
-    if(isOpen(r.status))cap[n].open++;
-    if(clean(r.status).toLowerCase().includes("closed")||clean(r.status).includes("مغلقة"))cap[n].closed++;
+    const n=norm(r.responsibility);const k=keyName(n);
+    if(excludedName(n))return;
+    displayNames[k]??=n;cap[k]??={name:n,total:0,open:0,progress:0,closed:0};
+    cap[k].total++;if(isProgress(r.status))cap[k].progress++;if(isOpen(r.status))cap[k].open++;if(isClosed(r.status))cap[k].closed++;
   });
-  const names=uniq([...Object.keys(trainers),...Object.keys(cap)]);
-  rows=names.map(name=>({
-    name,
-    trained:trainers[name]?.trainingEmployees.size||0,
-    trainingRecords:trainers[name]?.trainingRecords||0,
-    capa:cap[name]?.total||0,
-    open:cap[name]?.open||0,
-    progress:cap[name]?.progress||0,
-    closed:cap[name]?.closed||0
-  })).sort((a,b)=>(b.capa+b.trained)-(a.capa+a.trained));
+  const names=new Set([...Object.keys(trainers),...Object.keys(cap)]);
+  rows=[...names].map(k=>({name:displayNames[k],trained:trainers[k]?.employees.size||0,trainingRecords:trainers[k]?.records||0,capa:cap[k]?.total||0,open:cap[k]?.open||0,progress:cap[k]?.progress||0,closed:cap[k]?.closed||0})).sort((a,b)=>a.name.localeCompare(b.name));
   render();
 }
-function bindMobileMenu(){
-  const sidebar=document.getElementById("sidebar"),overlay=document.getElementById("sidebarOverlay"),button=document.getElementById("mobileMenuBtn");
-  if(!sidebar||!button)return;
-  const close=()=>{sidebar.classList.remove("open");if(overlay)overlay.classList.remove("show");button.setAttribute("aria-expanded","false");document.body.style.overflow="";document.documentElement.style.overflow=""};
-  const toggle=e=>{e.preventDefault();e.stopPropagation();sidebar.classList.contains("open")?close():(sidebar.classList.add("open"),overlay&&overlay.classList.add("show"),button.setAttribute("aria-expanded","true"),document.body.style.overflow="hidden",document.documentElement.style.overflow="hidden")};
-  button.onclick=toggle;button.setAttribute("aria-controls","sidebar");button.setAttribute("aria-expanded","false");
-  if(overlay)overlay.onclick=close;
-  sidebar.querySelectorAll("a").forEach(a=>a.onclick=()=>{if(innerWidth<=800)close()});
-}
+function selected(){return rows.find(x=>keyName(x.name)===keyName(document.getElementById("memberSelect")?.value))||rows[0]||null}
+function bar(label,value,max,cls){return '<div class="bar-row"><div class="bar-label">'+esc(label)+'</div><div class="track"><div class="fill '+cls+'" style="width:'+((value/max)*100||0)+'%"></div></div><div class="bar-value">'+value.toLocaleString()+"</div></div>"}
 function render(){
   const q=clean(document.getElementById("teamSearch")?.value).toLowerCase();
   const view=rows.filter(x=>!q||x.name.toLowerCase().includes(q));
   const totals=view.reduce((a,x)=>{a.trained+=x.trained;a.records+=x.trainingRecords;a.capa+=x.capa;a.open+=x.open;a.progress+=x.progress;a.closed+=x.closed;return a},{trained:0,records:0,capa:0,open:0,progress:0,closed:0});
+  const keep=selected()?.name||"";
   document.querySelector(".main").innerHTML=`
-  <header class="unified-header"><div class="unified-left"><button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open menu"><span class="menu-line"></span><span class="menu-line"></span><span class="menu-line"></span></button><img class="mobile-header-logo" src="./LOGOG.png" alt="Alfa Labs"><div class="unified-title"><h1>HSE Teams</h1><p>Safety Team Performance & KPI Dashboard</p></div></div><div class="unified-meta"></div></header>
-  <section class="content">
-    <div class="hero"><h2>👥 HSE Teams Performance</h2><p>Live summary of training delivered and CAPA activity by HSE team member. Open and In Progress CAPA are both treated as open work.</p></div>
-    <div class="filters"><label>Search Team Member</label><input id="teamSearch" placeholder="Type a name..." value="${esc(q)}"><span class="note">Data source: Training + CAPA records</span></div>
-    <div class="kpis">
-      <div class="kpi"><small>Team Members</small><strong>${view.length}</strong></div>
-      <div class="kpi"><small>Employees Trained</small><strong>${totals.trained.toLocaleString()}</strong></div>
-      <div class="kpi k-total"><small>CAPA Recorded</small><strong>${totals.capa.toLocaleString()}</strong></div>
-      <div class="kpi k-open"><small>Open Work (Open + In Progress)</small><strong>${totals.open.toLocaleString()}</strong></div>
-      <div class="kpi k-closed"><small>Closed CAPA</small><strong>${totals.closed.toLocaleString()}</strong></div>
-    </div>
-    <div class="table-card"><div class="table-head"><h3>HSE Team KPI Table</h3><span class="count">${view.length} team members</span></div>
-    <div class="table-scroll"><table><thead><tr><th>#</th><th>HSE Team Member</th><th>Employees Trained</th><th>Training Records</th><th>CAPA Recorded</th><th>Open CAPA</th><th>In Progress</th><th>Closed CAPA</th></tr></thead><tbody>
-    ${view.length?view.map((x,i)=>`<tr><td>${i+1}</td><td class="name">${esc(x.name)}</td><td class="num"><span class="pill total">${x.trained.toLocaleString()}</span></td><td class="num">${x.trainingRecords.toLocaleString()}</td><td class="num"><span class="pill total">${x.capa.toLocaleString()}</span></td><td class="num"><span class="pill open">${x.open.toLocaleString()}</span></td><td class="num"><span class="pill progress">${x.progress.toLocaleString()}</span></td><td class="num"><span class="pill closed">${x.closed.toLocaleString()}</span></td></tr>`).join(""):`<tr><td colspan="8" class="empty">No matching team member.</td></tr>`}
-    </tbody></table></div></div>
-    <div class="note">Employees Trained = unique employee names assigned to each trainer. CAPA Recorded = records where the HSE member is listed in the CAPA Responsibility field. Open CAPA includes both Open and In Progress.</div>
-  </section>`;
+<header class="unified-header"><div class="unified-left"><button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open menu"><span class="menu-line"></span><span class="menu-line"></span><span class="menu-line"></span></button><img class="mobile-header-logo" src="./LOGOG.png" alt="Alfa Labs"><div class="unified-title"><h1>HSE Teams</h1><p>Safety Team Performance & KPI Dashboard</p></div></div><div class="unified-meta"></div></header>
+<section class="content">
+<div class="hero"><h2>👥 HSE Teams Performance</h2><p>Individual performance from Training + CAPA data. Open work includes both Open and In Progress CAPA.</p></div>
+<div class="filters"><label>Team Member Details</label><select id="memberSelect"><option value="">Select HSE Team Member</option>${rows.map(x=>'<option value="'+esc(x.name)+'" '+(keyName(x.name)===keyName(keep)?"selected":"")+'>'+esc(x.name)+'</option>').join("")}</select><label>Search</label><input id="teamSearch" placeholder="Search team member..." value="${esc(q)}"><span class="note">External Trainer entries are hidden. Duplicate names are merged into one member.</span></div>
+<div class="detail-card"><div class="detail-head"><h3 id="detailTitle">Select a team member to view detailed KPI</h3><span>Individual HSE KPI</span></div><div id="detailBody" class="empty">Choose a name from the list above.</div></div>
+<div class="kpis"><div class="kpi"><small>Team Members</small><strong>${view.length}</strong></div><div class="kpi"><small>Employees Trained</small><strong>${totals.trained.toLocaleString()}</strong></div><div class="kpi k-total"><small>CAPA Recorded</small><strong>${totals.capa.toLocaleString()}</strong></div><div class="kpi k-open"><small>Open Work (Open + In Progress)</small><strong>${totals.open.toLocaleString()}</strong></div><div class="kpi k-closed"><small>Closed CAPA</small><strong>${totals.closed.toLocaleString()}</strong></div></div>
+<div class="table-card"><div class="table-head"><h3>HSE Team KPI Table</h3><span class="count">${view.length} team members</span></div><div class="table-scroll"><table><thead><tr><th>#</th><th>HSE Team Member</th><th>Employees Trained</th><th>Training Records</th><th>CAPA Recorded</th><th>Open CAPA</th><th>In Progress</th><th>Closed CAPA</th></tr></thead><tbody>
+${view.length?view.map((x,i)=>'<tr><td>'+ (i+1)+'</td><td class="name">'+esc(x.name)+'</td><td class="num"><span class="pill total">'+x.trained.toLocaleString()+'</span></td><td class="num">'+x.trainingRecords.toLocaleString()+'</td><td class="num"><span class="pill total">'+x.capa.toLocaleString()+'</span></td><td class="num"><span class="pill open">'+x.open.toLocaleString()+'</span></td><td class="num"><span class="pill progress">'+x.progress.toLocaleString()+'</span></td><td class="num"><span class="pill closed">'+x.closed.toLocaleString()+'</span></td></tr>').join(""):'<tr><td colspan="8" class="empty">No matching team member.</td></tr>'}
+</tbody></table></div></div><div class="note">Employees Trained = unique employee names. CAPA Recorded = CAPA Responsibility records. Open Work = Open + In Progress. Duplicate names are merged.</div></section>`;
   document.getElementById("teamSearch").oninput=render;
-  // Re-bind the shared mobile menu after the page header is rendered.
+  document.getElementById("memberSelect").onchange=render;
   bindMobileMenu();
+  showDetail(selected());
+}
+function showDetail(x){
+  const title=document.getElementById("detailTitle"),body=document.getElementById("detailBody");if(!title||!body)return;
+  if(!x){title.textContent="Select a team member to view detailed KPI";body.className="empty";body.innerHTML="Choose a name from the list above.";return}
+  title.textContent=x.name+" — Detailed KPI";
+  const maxT=Math.max(x.trained,x.trainingRecords,1),maxC=Math.max(x.capa,x.open,x.progress,x.closed,1),total=x.capa||0,closedRate=total?Math.round(x.closed/total*100):0,openRate=total?Math.round(x.open/total*100):0;
+  const pOpen=total?x.open/total*100:0,pProg=total?x.progress/total*100:0;
+  body.className="";
+  body.innerHTML='<div class="kpis" style="margin-bottom:16px"><div class="kpi"><small>Employees Trained</small><strong>'+x.trained.toLocaleString()+'</strong></div><div class="kpi"><small>Training Records</small><strong>'+x.trainingRecords.toLocaleString()+'</strong></div><div class="kpi k-total"><small>CAPA Recorded</small><strong>'+x.capa.toLocaleString()+'</strong></div><div class="kpi k-open"><small>Open Work</small><strong>'+x.open.toLocaleString()+'</strong></div><div class="kpi k-progress"><small>In Progress</small><strong>'+x.progress.toLocaleString()+'</strong></div><div class="kpi k-closed"><small>Closed CAPA</small><strong>'+x.closed.toLocaleString()+'</strong></div></div><div class="detail-grid"><div class="chart-box"><div class="chart-title">Activity Overview</div><div class="bars">'+bar("Employees Trained",x.trained,maxT,"blue")+bar("Training Records",x.trainingRecords,maxT,"blue")+bar("CAPA Recorded",x.capa,maxC,"orange")+bar("Open Work",x.open,maxC,"red")+bar("Closed CAPA",x.closed,maxC,"green")+'</div></div><div class="chart-box"><div class="chart-title">CAPA Status Distribution</div><div class="status-chart"><div class="legend"><div class="legend-item"><span class="legend-name"><span class="legend-dot ld-open"></span>Open Work</span><b>'+x.open+' ('+openRate+'%)</b></div><div class="legend-item"><span class="legend-name"><span class="legend-dot ld-progress"></span>In Progress</span><b>'+x.progress+' ('+(total?Math.round(x.progress/total*100):0)+'%)</b></div><div class="legend-item"><span class="legend-name"><span class="legend-dot ld-closed"></span>Closed</span><b>'+x.closed+' ('+closedRate+'%)</b></div></div><div class="status-donut" style="background:conic-gradient(#d92d3a 0 ${pOpen}%,#f59e0b ${pOpen}% ${pOpen+pProg}%,#16845b ${pOpen+pProg}% 100%)"><div class="status-inner"><strong>'+total.toLocaleString()+'</strong><small>Total CAPA</small></div></div></div></div></div>';
+}
+function bindMobileMenu(){
+ const sidebar=document.getElementById("sidebar"),overlay=document.getElementById("sidebarOverlay"),button=document.getElementById("mobileMenuBtn");if(!sidebar||!button)return;
+ const close=()=>{sidebar.classList.remove("open");if(overlay)overlay.classList.remove("show");button.setAttribute("aria-expanded","false");document.body.style.overflow="";document.documentElement.style.overflow=""};
+ const toggle=e=>{e.preventDefault();e.stopPropagation();sidebar.classList.contains("open")?close():(sidebar.classList.add("open"),overlay&&overlay.classList.add("show"),button.setAttribute("aria-expanded","true"),document.body.style.overflow="hidden",document.documentElement.style.overflow="hidden")};
+ button.onclick=toggle;button.setAttribute("aria-controls","sidebar");button.setAttribute("aria-expanded","false");if(overlay)overlay.onclick=close;sidebar.querySelectorAll("a").forEach(a=>a.onclick=()=>{if(innerWidth<=800)close()});
 }
 async function init(){
-  try{
-    const [tr,c]=await Promise.all([fetch(TRAINING_URL,{cache:"no-store"}),fetch(CAPA_URL,{cache:"no-store"})]);
-    if(!tr.ok||!c.ok)throw new Error("Data files unavailable");
-    training=await tr.json();capa=await c.json();build();
-  }catch(e){
-    document.querySelector(".main").innerHTML='<div style="padding:40px;text-align:center;color:#b42331;font-weight:800">Unable to load Training or CAPA data.</div>';
-  }
+ try{const [tr,c]=await Promise.all([fetch(TRAINING_URL,{cache:"no-store"}),fetch(CAPA_URL,{cache:"no-store"})]);if(!tr.ok||!c.ok)throw Error("Data files unavailable");training=await tr.json();capa=await c.json();build();}
+ catch(e){console.error(e);document.querySelector(".main").innerHTML='<div style="padding:40px;text-align:center;color:#b42331;font-weight:800">Unable to load Training or CAPA data.</div>'}
 }
 init();
 </script>
