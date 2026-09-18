@@ -188,16 +188,6 @@ body{margin:0;font-family:Arial,Tahoma,sans-serif;background:#f4f7fb;color:#1736
 </main>
 
 <script src="./sidebar-standard.js?v=20260918.6"></script>
-<script>
-(function(){
-  const e=document.getElementById('dateBox');
-  function tick(){
-    const d=new Date();
-    e.textContent='📅 '+d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
-  }
-  tick();
-  setInterval(tick,60000);
-})();
-</script>
+
 </body>
 </html>
