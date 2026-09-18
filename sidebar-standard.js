@@ -1,6 +1,10 @@
 /* Alfa Labs HSE — Master Sidebar + Footer Standard */
 (function(){
   function init(){
+    /* Global access gate: every Sidebar page is protected by the same auth layer. */
+    if(!document.querySelector('script[data-alfa-auth]')){
+      const a=document.createElement('script');a.src='./auth.js?v=20260918';a.async=false;a.dataset.alfaAuth='1';document.head.appendChild(a);
+    }
     const sidebar=document.querySelector('.sidebar');
     if(!sidebar)return;
     const links=[['index.html','🏠','Home'],['capa.html','📋','CAPA'],['training.html','🎓','Training'],['#','👁️','Safety Observations'],['#','🚨','Incidents'],['#','⚠️','Near Miss'],['#','🔍','Inspections'],['#','🔥','Fire Safety'],['#','🩹','First Aid'],['#','📊','Analytics'],['#','📄','Reports'],['#','⚙️','Settings']];
