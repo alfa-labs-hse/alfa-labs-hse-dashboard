@@ -298,6 +298,31 @@ loadCapa();
 /* HOME FINAL PRESENTATION GUARD V5 */
 (function(){function cleanHome(){try{document.querySelectorAll('.load-error').forEach(function(e){e.remove()});var banners=[...document.querySelectorAll('.executive-banner')].filter(function(e){return /Executive HSE Overview/.test(e.textContent||'')});banners.slice(1).forEach(function(e){e.remove()});var total=document.getElementById('totalValue'),status=document.getElementById('dataStatus');if(status&&total&&total.textContent.trim()&&total.textContent.trim()!=='—')status.textContent='CAPA + Training live data connected • 1,288 CAPA • 1,540 training records'}catch(e){console.warn('Home final guard',e)}}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',cleanHome);else cleanHome();setTimeout(cleanHome,700);setTimeout(cleanHome,1800);setTimeout(cleanHome,3000)})();
 </script>
+<style>
+/* ENVIRONMENT HOME SNAPSHOT */
+.env-home{margin-top:18px;background:#fff;border:1px solid #e7ecf1;border-radius:15px;padding:18px;box-shadow:0 6px 20px rgba(20,55,90,.05)}
+.env-home-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:13px}.env-home-head h3{margin:0;font-size:17px}.env-home-head span{font-size:11px;color:#7b8997}.env-home-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}.env-home-card{border:1px solid #e7edf2;background:#f9fbfd;border-radius:12px;padding:13px}.env-home-card b{display:block;font-size:25px;margin-top:6px}.env-home-card small{font-size:10px;color:#7d8c99}.env-home-link{display:inline-flex;margin-top:12px;text-decoration:none;color:#1976d2;font-size:11px;font-weight:900}
+html.hse-dark .env-home{background:#111f2f!important;border-color:#2a3e53!important}.env-home-card{color:#17365d}.env-home-card small{color:#7d8c99}html.hse-dark .env-home-card{background:#172638!important;border-color:#344b61!important;color:#e7eff8!important}html.hse-dark .env-home-card small{color:#aebfd0!important}
+@media(max-width:700px){.env-home-grid{grid-template-columns:1fr 1fr}.env-home{padding:14px}.env-home-card{padding:11px}.env-home-card b{font-size:22px}}
+@media(max-width:390px){.env-home-grid{grid-template-columns:1fr}}
+</style>
+<script>
+/* ENVIRONMENT HOME SNAPSHOT V1 */
+(async function(){
+  try{
+    const r=await fetch('./environment-data.json',{cache:'no-store'});if(!r.ok)throw Error('Environment data HTTP '+r.status);
+    const d=await r.json(),rows=Array.isArray(d)?d:(d.records||[]);
+    const weight=rows.reduce((s,x)=>s+Number(x.totalWeightKg||0),0),bags=rows.reduce((s,x)=>s+Number(x.bags||0),0),boxes=rows.reduce((s,x)=>s+Number(x.safetyBoxes||0),0);
+    const host=document.querySelector('.quick')||document.querySelector('.content');
+    if(!host||document.getElementById('envHome'))return;
+    const sec=document.createElement('section');sec.id='envHome';sec.className='env-home';
+    sec.innerHTML='<div class="env-home-head"><h3>🌱 Environment | البيئة</h3><span id="envHomeScope">Central Lab • Source: Environment Register</span></div><div class="env-home-grid"><div class="env-home-card"><small id="envL1">Total Waste Weight | إجمالي وزن المخلفات</small><b id="envWeight">'+weight.toLocaleString('en-US')+' kg</b></div><div class="env-home-card"><small id="envL2">Waste Records | سجلات المخلفات</small><b>'+rows.length.toLocaleString('en-US')+'</b></div><div class="env-home-card"><small id="envL3">Bags / Containers | الأكياس / العبوات</small><b>'+bags.toLocaleString('en-US')+'</b></div><div class="env-home-card"><small id="envL4">Safety Boxes | صناديق الأمان</small><b>'+boxes.toLocaleString('en-US')+'</b></div></div><a class="env-home-link" href="./environment.html">Open Environment Dashboard →</a>';
+    host.parentNode.insertBefore(sec,host);
+    const update=()=>{const ar=localStorage.getItem('alfaLabsLang')==='ar';sec.querySelector('#envHomeScope').textContent=ar?'المعمل المركزي • المصدر: سجل البيئة':'Central Lab • Source: Environment Register';sec.querySelector('#envL1').textContent=ar?'إجمالي وزن المخلفات':'Total Waste Weight';sec.querySelector('#envL2').textContent=ar?'سجلات المخلفات':'Waste Records';sec.querySelector('#envL3').textContent=ar?'الأكياس / العبوات':'Bags / Containers';sec.querySelector('#envL4').textContent=ar?'صناديق الأمان':'Safety Boxes';sec.querySelector('.env-home-link').textContent=ar?'فتح لوحة البيئة ←':'Open Environment Dashboard →'};
+    update();new MutationObserver(update).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
+  }catch(e){console.error('Environment home snapshot load failed',e)}
+})();
+</script>
 <script src="./hse-report-generator.js"></script>
 <script src="./sidebar-standard.js"></script>
 </body>
