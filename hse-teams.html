@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Alfa Labs | HSE Teams</title>
-<script src="./global-ui.js?v=20260919.1"></script>
+
 <style>
 :root{--navy:#082b52;--blue:#1976d2;--green:#16845b;--red:#d92d3a;--orange:#f59e0b;--bg:#f4f7fb;--card:#fff;--border:#e1e8f0;--muted:#6f8194;--text:#17365d}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Arial,sans-serif;color:var(--text)}
@@ -27,7 +27,7 @@
 <aside class="sidebar" id="sidebar"></aside>
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 <main class="main"></main>
-<script src="./sidebar-standard.js?v=20260919.1"></script>
+<script src="./sidebar-standard.js?v=20260919.2"></script><script src="./global-ui.js?v=20260919.2"></script>
 <script>
 const TRAINING_URL="./training-data.json",CAPA_URL="./capa-data.json";
 const C={trainer:"اسم المدرب | Trainer Name",date:"تاريخ التدريب | Training Date",employee:"اسم الموظف | Employee Name"};
@@ -67,6 +67,15 @@ function build(){
   })).sort((a,b)=>(b.capa+b.trained)-(a.capa+a.trained));
   render();
 }
+function bindMobileMenu(){
+  const sidebar=document.getElementById("sidebar"),overlay=document.getElementById("sidebarOverlay"),button=document.getElementById("mobileMenuBtn");
+  if(!sidebar||!button)return;
+  const close=()=>{sidebar.classList.remove("open");if(overlay)overlay.classList.remove("show");button.setAttribute("aria-expanded","false");document.body.style.overflow="";document.documentElement.style.overflow=""};
+  const toggle=e=>{e.preventDefault();e.stopPropagation();sidebar.classList.contains("open")?close():(sidebar.classList.add("open"),overlay&&overlay.classList.add("show"),button.setAttribute("aria-expanded","true"),document.body.style.overflow="hidden",document.documentElement.style.overflow="hidden")};
+  button.onclick=toggle;button.setAttribute("aria-controls","sidebar");button.setAttribute("aria-expanded","false");
+  if(overlay)overlay.onclick=close;
+  sidebar.querySelectorAll("a").forEach(a=>a.onclick=()=>{if(innerWidth<=800)close()});
+}
 function render(){
   const q=clean(document.getElementById("teamSearch")?.value).toLowerCase();
   const view=rows.filter(x=>!q||x.name.toLowerCase().includes(q));
@@ -91,7 +100,7 @@ function render(){
   </section>`;
   document.getElementById("teamSearch").oninput=render;
   // Re-bind the shared mobile menu after the page header is rendered.
-  if(window.AlfaHSEGlobal && window.AlfaHSEGlobal.rebindMobileMenu) window.AlfaHSEGlobal.rebindMobileMenu();
+  bindMobileMenu();
 }
 async function init(){
   try{
