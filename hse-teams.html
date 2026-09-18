@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Alfa Labs | HSE Teams</title>
+<script src="./global-ui.js?v=20260919.1"></script>
+<style>
+:root{--navy:#082b52;--blue:#1976d2;--green:#16845b;--red:#d92d3a;--orange:#f59e0b;--bg:#f4f7fb;--card:#fff;--border:#e1e8f0;--muted:#6f8194;--text:#17365d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Arial,sans-serif;color:var(--text)}
+.main{min-height:100vh}.content{padding:24px 28px 30px;max-width:1600px;margin:auto}
+.hero{background:linear-gradient(135deg,#082b52,#1976d2);color:#fff;border-radius:16px;padding:24px 26px;margin-bottom:18px;box-shadow:0 10px 26px rgba(8,43,82,.14)}
+.hero h2{margin:0 0 7px;font-size:25px}.hero p{margin:0;color:#dbeafe;font-size:13px;line-height:1.5}
+.filters,.kpi,.table-card,.member-card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 5px 18px rgba(20,55,90,.06)}
+.filters{padding:15px 17px;margin-bottom:16px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}.filters label{font-size:12px;font-weight:800;color:#536b83}.filters input,.filters select{border:1px solid #ccd8e5;border-radius:9px;padding:9px 11px;background:#fff;color:var(--text);font-weight:700}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:18px}.kpi{padding:17px}.kpi small{display:block;color:var(--muted);font-weight:800;font-size:11px;margin-bottom:8px}.kpi strong{font-size:28px;display:block}.kpi.k-total strong{color:var(--blue)}.kpi.k-open strong{color:var(--red)}.kpi.k-progress strong{color:var(--orange)}.kpi.k-closed strong{color:var(--green)}
+.table-card{overflow:hidden}.table-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:17px 18px;border-bottom:1px solid var(--border)}.table-head h3{margin:0;font-size:17px}.count{font-size:11px;color:var(--muted);font-weight:800}
+.table-scroll{overflow:auto;max-height:650px;-webkit-overflow-scrolling:touch}table{width:100%;border-collapse:collapse;min-width:1000px;font-size:12px}th{position:sticky;top:0;z-index:2;background:#eef4fa;color:#33445a;text-align:left;padding:12px 10px;white-space:nowrap}td{padding:11px 10px;border-top:1px solid var(--border);vertical-align:middle}tbody tr:hover td{background:#f8fbfe}.name{font-weight:900;color:var(--navy);white-space:nowrap}.num{font-weight:900;text-align:center;font-size:15px}.pill{display:inline-flex;align-items:center;justify-content:center;min-width:44px;padding:5px 9px;border-radius:999px;font-weight:900;font-size:11px}.pill.total{background:#e8f1ff;color:#1266d6}.pill.open{background:#ffeaed;color:#b42331}.pill.progress{background:#fff4dc;color:#a15c00}.pill.closed{background:#e7f7ef;color:#087443}
+.empty{text-align:center;padding:45px;color:var(--muted);font-weight:700}
+.note{font-size:11px;color:var(--muted);margin-top:10px}
+@media(max-width:900px){.content{padding:16px}.kpis{grid-template-columns:repeat(2,1fr)}.hero h2{font-size:21px}}
+@media(max-width:600px){.content{padding:12px}.hero{padding:18px;border-radius:12px}.hero h2{font-size:19px}.hero p{font-size:11px}.filters{align-items:stretch}.filters>*{width:100%}.kpis{grid-template-columns:1fr 1fr;gap:9px}.kpi{padding:13px}.kpi strong{font-size:23px}.table-head{padding:14px}.table-scroll{max-height:560px}}
+@media(max-width:390px){.kpis{grid-template-columns:1fr}.kpi strong{font-size:25px}}
+</style>
+</head>
+<body data-page-title="HSE Teams" data-page-subtitle="Safety Team Performance & KPI Dashboard">
+<aside class="sidebar" id="sidebar"></aside>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="main"></main>
+<script src="./sidebar-standard.js?v=20260919.1"></script>
+<script>
+const TRAINING_URL="./training-data.json",CAPA_URL="./capa-data.json";
+const C={trainer:"اسم المدرب | Trainer Name",date:"تاريخ التدريب | Training Date",employee:"اسم الموظف | Employee Name"};
+let training=[],capa=[],rows=[];
+const clean=v=>String(v??"").trim();
+const uniq=a=>[...new Set(a.map(clean).filter(Boolean))];
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function isOpen(v){const s=clean(v).toLowerCase();return s.includes("open")||s.includes("مفتوحة")||s.includes("in progress")||s.includes("قيد التنفيذ")}
+function isProgress(v){const s=clean(v).toLowerCase();return s.includes("in progress")||s.includes("قيد التنفيذ")}
+function normalizeName(v){return clean(v).replace(/\s+/g," ")}
+function build(){
+  const trainers={};
+  training.forEach(r=>{
+    const n=normalizeName(r[C.trainer]);const e=normalizeName(r[C.employee]);
+    if(!n||!e)return;
+    trainers[n]??={trainingEmployees:new Set(),trainingRecords:0};
+    trainers[n].trainingEmployees.add(e);trainers[n].trainingRecords++;
+  });
+  const cap={};
+  capa.forEach(r=>{
+    const n=normalizeName(r.responsibility);if(!n)return;
+    cap[n]??={total:0,open:0,progress:0,closed:0};
+    cap[n].total++;
+    if(isProgress(r.status))cap[n].progress++;
+    if(isOpen(r.status))cap[n].open++;
+    if(clean(r.status).toLowerCase().includes("closed")||clean(r.status).includes("مغلقة"))cap[n].closed++;
+  });
+  const names=uniq([...Object.keys(trainers),...Object.keys(cap)]);
+  rows=names.map(name=>({
+    name,
+    trained:trainers[name]?.trainingEmployees.size||0,
+    trainingRecords:trainers[name]?.trainingRecords||0,
+    capa:cap[name]?.total||0,
+    open:cap[name]?.open||0,
+    progress:cap[name]?.progress||0,
+    closed:cap[name]?.closed||0
+  })).sort((a,b)=>(b.capa+b.trained)-(a.capa+a.trained));
+  render();
+}
+function render(){
+  const q=clean(document.getElementById("teamSearch")?.value).toLowerCase();
+  const view=rows.filter(x=>!q||x.name.toLowerCase().includes(q));
+  const totals=view.reduce((a,x)=>{a.trained+=x.trained;a.records+=x.trainingRecords;a.capa+=x.capa;a.open+=x.open;a.progress+=x.progress;a.closed+=x.closed;return a},{trained:0,records:0,capa:0,open:0,progress:0,closed:0});
+  document.querySelector(".main").innerHTML=`
+  <header class="unified-header"><div class="unified-left"><button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open menu"><span class="menu-line"></span><span class="menu-line"></span><span class="menu-line"></span></button><img class="mobile-header-logo" src="./LOGOG.png" alt="Alfa Labs"><div class="unified-title"><h1>HSE Teams</h1><p>Safety Team Performance & KPI Dashboard</p></div></div><div class="unified-meta"></div></header>
+  <section class="content">
+    <div class="hero"><h2>👥 HSE Teams Performance</h2><p>Live summary of training delivered and CAPA activity by HSE team member. Open and In Progress CAPA are both treated as open work.</p></div>
+    <div class="filters"><label>Search Team Member</label><input id="teamSearch" placeholder="Type a name..." value="${esc(q)}"><span class="note">Data source: Training + CAPA records</span></div>
+    <div class="kpis">
+      <div class="kpi"><small>Team Members</small><strong>${view.length}</strong></div>
+      <div class="kpi"><small>Employees Trained</small><strong>${totals.trained.toLocaleString()}</strong></div>
+      <div class="kpi k-total"><small>CAPA Recorded</small><strong>${totals.capa.toLocaleString()}</strong></div>
+      <div class="kpi k-open"><small>Open Work (Open + In Progress)</small><strong>${totals.open.toLocaleString()}</strong></div>
+      <div class="kpi k-closed"><small>Closed CAPA</small><strong>${totals.closed.toLocaleString()}</strong></div>
+    </div>
+    <div class="table-card"><div class="table-head"><h3>HSE Team KPI Table</h3><span class="count">${view.length} team members</span></div>
+    <div class="table-scroll"><table><thead><tr><th>#</th><th>HSE Team Member</th><th>Employees Trained</th><th>Training Records</th><th>CAPA Recorded</th><th>Open CAPA</th><th>In Progress</th><th>Closed CAPA</th></tr></thead><tbody>
+    ${view.length?view.map((x,i)=>`<tr><td>${i+1}</td><td class="name">${esc(x.name)}</td><td class="num"><span class="pill total">${x.trained.toLocaleString()}</span></td><td class="num">${x.trainingRecords.toLocaleString()}</td><td class="num"><span class="pill total">${x.capa.toLocaleString()}</span></td><td class="num"><span class="pill open">${x.open.toLocaleString()}</span></td><td class="num"><span class="pill progress">${x.progress.toLocaleString()}</span></td><td class="num"><span class="pill closed">${x.closed.toLocaleString()}</span></td></tr>`).join(""):`<tr><td colspan="8" class="empty">No matching team member.</td></tr>`}
+    </tbody></table></div></div>
+    <div class="note">Employees Trained = unique employee names assigned to each trainer. CAPA Recorded = records where the HSE member is listed in the CAPA Responsibility field. Open CAPA includes both Open and In Progress.</div>
+  </section>`;
+  document.getElementById("teamSearch").oninput=render;
+  // Re-bind the shared mobile menu after the page header is rendered.
+  if(window.AlfaHSEGlobal && window.AlfaHSEGlobal.rebindMobileMenu) window.AlfaHSEGlobal.rebindMobileMenu();
+}
+async function init(){
+  try{
+    const [tr,c]=await Promise.all([fetch(TRAINING_URL,{cache:"no-store"}),fetch(CAPA_URL,{cache:"no-store"})]);
+    if(!tr.ok||!c.ok)throw new Error("Data files unavailable");
+    training=await tr.json();capa=await c.json();build();
+  }catch(e){
+    document.querySelector(".main").innerHTML='<div style="padding:40px;text-align:center;color:#b42331;font-weight:800">Unable to load Training or CAPA data.</div>';
+  }
+}
+init();
+</script>
+</body>
+</html>
