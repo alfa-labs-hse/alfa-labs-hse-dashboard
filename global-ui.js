@@ -301,7 +301,26 @@ html[data-hse-lang="ar"] #alfa-weather{direction:rtl}
   .unified-title h1,.unified-title h2{font-size:17px!important}
   #alfa-user-badge .alfa-user-email{max-width:118px!important}
 }
+`
+/* MOBILE PERFORMANCE MODE — iOS Safari + Android Chrome */
+@media(max-width:700px){
+  html{scroll-behavior:auto!important;-webkit-text-size-adjust:100%!important}
+  body::before,body::after{display:none!important;content:none!important}
+  .unified-header,.header,.topbar,.card,.kpi,.filters,.filters-card,.table-card,.chart-card,.action,.snapshot,.quick a{
+    animation:none!important;
+    transition:none!important;
+  }
+  .kpi:hover,.card:hover,.chart-card:hover,.table-card:hover,.action:hover,.snapshot:hover,.quick a:hover{
+    transform:none!important;
+  }
+  .live-clock{animation:none!important;box-shadow:none!important}
+  #hse-global-controls button::after{display:none!important;animation:none!important}
+  img{content-visibility:auto}
+}
+@media(max-width:430px){
+  .unified-header{contain:layout paint!important}
+}
 `;document.head.appendChild(s)}
-function init(){style();addControls();applyTheme();applyLang();new MutationObserver(m=>{if(m.some(x=>x.addedNodes?.length))setTimeout(applyLang,0)}).observe(document.body,{childList:true,subtree:true})}
+function init(){style();addControls();applyTheme();applyLang();(function(){let tm=0;const mo=new MutationObserver(m=>{if(!m.some(x=>x.addedNodes&&x.addedNodes.length))return;clearTimeout(tm);tm=setTimeout(applyLang,350)});mo.observe(document.body,{childList:true,subtree:true})})()}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();window.AlfaHSEGlobal={applyTheme,applyLang,chartTheme,M};
 })();
