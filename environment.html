@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#0b3157"><link rel="icon" href="./LOGOG.png">
+<title>Alfa Labs HSE | Environment</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Tahoma,sans-serif;background:#f4f7fb;color:#17365d;overflow-x:hidden}.sidebar{position:fixed;left:0;top:0;width:230px;height:100vh}.main{margin-left:230px;min-height:100vh}.unified-header{min-height:82px;background:#fff;border-bottom:1px solid #e3eaf1;display:flex;align-items:center;justify-content:space-between;padding:12px 28px;gap:18px;direction:ltr;position:sticky;top:0;z-index:30}.unified-left{display:flex;align-items:center;gap:13px;min-width:0}.mobile-menu-btn{display:none;border:0;background:#0b3157;color:#fff;width:44px;height:44px;border-radius:9px;font-size:22px}.unified-title{text-align:left;min-width:0}.unified-title h1{margin:0;font-size:25px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.unified-title p{margin:5px 0 0;color:#71808e;font-size:12px}.unified-meta{display:flex;align-items:center;gap:10px;flex:0 0 auto}.live-clock{background:#f5f7fa;border:1px solid #e3eaf1;border-radius:10px;padding:9px 12px;font-size:12px;font-weight:800;white-space:nowrap}.content{padding:24px;max-width:1650px;margin:auto}.hero{background:linear-gradient(135deg,#0b3157,#145b9b);color:#fff;border-radius:18px;padding:24px 26px;display:flex;align-items:center;justify-content:space-between;gap:20px;box-shadow:0 10px 28px rgba(11,49,87,.13);margin-bottom:18px}.hero h2{margin:0 0 7px;font-size:25px}.hero p{margin:0;color:#dceaf8;font-size:13px;line-height:1.6}.hero-badge{padding:10px 13px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.10);border-radius:11px;font-size:12px;font-weight:800;white-space:nowrap}.section-title{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:22px 0 10px}.section-title h3{margin:0;font-size:18px}.section-title span{font-size:11px;color:#7c8b99}.filters{background:#fff;border:1px solid #e2e9f0;border-radius:16px;padding:16px;display:grid;grid-template-columns:repeat(6,minmax(120px,1fr));gap:11px;box-shadow:0 6px 20px rgba(20,55,90,.05)}.field label{display:block;font-size:11px;font-weight:800;color:#66798c;margin:0 0 6px}.field select,.field input{width:100%;height:42px;border:1px solid #d8e2eb;border-radius:10px;background:#f9fbfd;color:#17365d;padding:0 11px;outline:none}.field select:focus,.field input:focus{border-color:#1976d2;box-shadow:0 0 0 3px rgba(25,118,210,.09)}.filter-actions{display:flex;align-items:end;gap:8px}.btn{height:42px;border:0;border-radius:10px;padding:0 15px;font-weight:800;cursor:pointer}.btn-primary{background:#1976d2;color:#fff}.btn-light{background:#eef4f9;color:#17365d;border:1px solid #d8e2eb}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.kpi{background:#fff;border:1px solid #e2e9f0;border-radius:15px;padding:17px;position:relative;overflow:hidden;box-shadow:0 6px 20px rgba(20,55,90,.05)}.kpi:after{content:"";position:absolute;bottom:0;left:0;right:0;height:4px;background:#1976d2}.kpi:nth-child(2):after{background:#315d91}.kpi:nth-child(3):after{background:#23834b}.kpi:nth-child(4):after{background:#d97722}.kpi-label{font-size:12px;font-weight:800;color:#66798c}.kpi-value{font-size:34px;font-weight:950;margin-top:10px}.kpi-sub{font-size:10px;color:#8593a0;margin-top:5px}.charts{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.card{background:#fff;border:1px solid #e2e9f0;border-radius:15px;padding:18px;box-shadow:0 6px 20px rgba(20,55,90,.05)}.card h3{margin:0 0 14px;font-size:16px}.chart{min-height:220px}.bar-row{display:grid;grid-template-columns:minmax(90px,1fr) 3fr 50px;align-items:center;gap:8px;margin:13px 0}.bar-label{font-size:11px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.track{height:10px;background:#edf2f7;border-radius:20px;overflow:hidden}.fill{height:100%;background:#1976d2;border-radius:20px;transition:width .45s ease}.bar-value{font-size:11px;font-weight:900;text-align:right}.table-card{padding:0;overflow:hidden}.table-wrap{overflow:auto}.data-table{width:100%;border-collapse:collapse;min-width:1280px}.data-table th{background:#0b3157;color:#fff;font-size:10px;padding:11px 9px;text-align:left;white-space:nowrap}.data-table td{border-bottom:1px solid #e7edf2;padding:10px 9px;font-size:10px;white-space:nowrap;color:#3f5870}.data-table tr:hover td{background:#f7fbff}.empty{text-align:center;padding:40px;color:#7d8c99;font-weight:700}.table-foot{padding:12px 15px;font-size:11px;color:#71808e;display:flex;justify-content:space-between;gap:10px}.notice{margin-top:14px;padding:11px 14px;border-radius:10px;background:#f2f7fc;border:1px solid #dbe7f2;color:#536b83;font-size:11px}.footer{margin-top:20px}.report-btn{position:fixed;right:28px;bottom:28px;z-index:80;background:linear-gradient(135deg,#0b3157,#1976d2);color:#fff;border:0;border-radius:13px;padding:13px 18px;font:900 14px Arial;box-shadow:0 10px 28px rgba(11,49,87,.25);cursor:pointer}.toast{position:fixed;right:28px;bottom:82px;z-index:81;background:#fff;border:1px solid #dce5ed;border-radius:10px;padding:10px 13px;font-size:11px;font-weight:800;box-shadow:0 8px 24px rgba(15,45,75,.14);display:none}@media(max-width:1250px){.filters{grid-template-columns:repeat(3,1fr)}.kpis{grid-template-columns:repeat(2,1fr)}}@media(max-width:850px){.sidebar{width:285px;max-width:84vw;transform:translateX(-105%);transition:.25s;z-index:1001}.sidebar.open{transform:translateX(0)}.main{margin:0;width:100%}.mobile-menu-btn{display:block}.unified-header{padding:10px 14px;min-height:70px}.unified-title h1{font-size:19px;white-space:normal}.unified-title p{font-size:10px}.unified-meta{gap:6px;flex-direction:column;align-items:flex-end}.content{padding:14px}.hero{padding:18px;border-radius:13px}.hero h2{font-size:19px}.hero p{font-size:10px}.hero-badge{font-size:9px;padding:7px}.charts{grid-template-columns:1fr}.filters{grid-template-columns:1fr 1fr}.kpis{grid-template-columns:1fr 1fr}.report-btn{right:14px;bottom:15px;padding:11px 14px;font-size:12px}}@media(max-width:480px){.filters{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr;gap:9px}.kpi{padding:12px}.kpi-value{font-size:26px}.hero{display:block}.hero-badge{display:inline-block;margin-top:12px}.unified-title h1{font-size:16px}.live-clock{font-size:9px;padding:6px 7px}.content{padding:11px}.data-table{min-width:1100px}.report-btn{max-width:calc(100vw - 28px)}}
+</style>
+</head>
+<body>
+<div class="sidebar"></div>
+<div class="sidebar-overlay"></div>
+<main class="main">
+<header class="unified-header">
+<div class="unified-left"><button class="mobile-menu-btn" id="mobileMenuBtn">☰</button><div class="unified-title"><h1>Environment | البيئة</h1><p>Central Lab • Medical Waste Management</p></div></div>
+<div class="unified-meta"><div class="live-clock" id="liveClock">Today</div></div>
+</header>
+<section class="content">
+<div class="hero"><div><h2>Environment | البيئة</h2><p>Central Lab environmental data • Medical waste transfer and handover register</p></div><div class="hero-badge">🏢 Central Lab Only</div></div>
+<div class="section-title"><h3>Filters | المرشحات</h3><span id="resultInfo">—</span></div>
+<div class="filters">
+<div class="field"><label>Day | اليوم</label><select id="dayFilter"><option value="">All Days</option></select></div>
+<div class="field"><label>Month | الشهر</label><select id="monthFilter"><option value="">All Months</option></select></div>
+<div class="field"><label>Year | السنة</label><select id="yearFilter"><option value="">All Years</option></select></div>
+<div class="field"><label>Company | الشركة</label><select id="companyFilter"><option value="">All Companies</option></select></div>
+<div class="field"><label>Waste Type | نوع المخلف</label><select id="typeFilter"><option value="">All Waste Types</option></select></div>
+<div class="field filter-actions"><button class="btn btn-primary" id="applyBtn">Apply Filters</button><button class="btn btn-light" id="resetBtn">Reset</button></div>
+</div>
+<div class="section-title"><h3>Environmental Summary | الملخص البيئي</h3><span id="dataSource">Source: Central Lab register</span></div>
+<div class="kpis">
+<div class="kpi"><div class="kpi-label">Total Waste Weight | إجمالي وزن المخلفات</div><div class="kpi-value" id="kpiWeight">0</div><div class="kpi-sub">kg | كجم</div></div>
+<div class="kpi"><div class="kpi-label">Records | السجلات</div><div class="kpi-value" id="kpiRecords">0</div><div class="kpi-sub">handover records</div></div>
+<div class="kpi"><div class="kpi-label">Bags / Containers | الأكياس / العبوات</div><div class="kpi-value" id="kpiBags">0</div><div class="kpi-sub">reported quantity</div></div>
+<div class="kpi"><div class="kpi-label">Safety Boxes | صناديق الأمان</div><div class="kpi-value" id="kpiBoxes">0</div><div class="kpi-sub">reported quantity</div></div>
+</div>
+<div class="section-title"><h3>Environmental Analysis | التحليل البيئي</h3><span>Based on filtered records</span></div>
+<div class="charts">
+<div class="card"><h3>Waste by Type | المخلفات حسب النوع</h3><div class="chart" id="typeChart"></div></div>
+<div class="card"><h3>Waste by Floor | المخلفات حسب الدور</h3><div class="chart" id="floorChart"></div></div>
+<div class="card"><h3>Waste by Company | المخلفات حسب الشركة</h3><div class="chart" id="companyChart"></div></div>
+<div class="card"><h3>Movement Type | نوع الحركة</h3><div class="chart" id="movementChart"></div></div>
+</div>
+<div class="section-title"><h3>Waste Transfer Register | سجل تسليم وتسلم النفايات</h3><span id="tableCount">0 records</span></div>
+<div class="card table-card"><div class="table-wrap"><table class="data-table"><thead><tr id="thead"></tr></thead><tbody id="tbody"></tbody></table></div><div class="table-foot"><span id="tableFootLeft">Central Lab</span><span id="tableFootRight">All source fields retained</span></div></div>
+<div class="notice">Data scope: Central Lab only. The dashboard uses the uploaded register as its source and does not add records that are not present in the register.</div>
+</section>
+<footer class="footer"></footer>
+</main>
+<button class="report-btn" id="reportBtn">📄 <span>Get a Report</span></button><div class="toast" id="toast"></div>
+<script>
+let DATA=[],FILTERED=[];
+const I18N={
+ en:{allDays:'All Days',allMonths:'All Months',allYears:'All Years',allCompanies:'All Companies',allTypes:'All Waste Types',records:'records',record:'record',kg:'kg',source:'Source: Central Lab register',central:'Central Lab',allFields:'All source fields retained',report:'Get a Report',preparing:'Preparing report…',created:'Report created successfully.',failed:'Report generation failed.'},
+ ar:{allDays:'كل الأيام',allMonths:'كل الشهور',allYears:'كل السنوات',allCompanies:'كل الشركات',allTypes:'كل أنواع المخلفات',records:'سجلات',record:'سجل',kg:'كجم',source:'المصدر: سجل المعمل المركزي',central:'المعمل المركزي',allFields:'تم الاحتفاظ بكل حقول المصدر',report:'الحصول على تقرير',preparing:'جاري إعداد التقرير…',created:'تم إنشاء التقرير بنجاح.',failed:'فشل إنشاء التقرير.'}
+};
+const FIELDS=[
+ ['id','No.','م'],['date','Date','التاريخ'],['dayAr','Day','اليوم'],['time','Collection Time','ساعة الاستلام'],['company','Company','اسم الشركة'],['floorAr','Floor','الدور'],['movementAr','Movement Type','نوع الحركة'],['wasteTypeAr','Waste Type','نوع المخلف'],['bags','Bags / Containers','عدد الأكياس / العبوات'],['bagsWeightKg','Bags / Containers Weight (kg)','وزن الأكياس / العبوات (كجم)'],['safetyBoxes','Safety Boxes','عدد صناديق الأمان'],['safetyBoxesWeightKg','Safety Boxes Weight (kg)','وزن صناديق الأمان (كجم)'],['totalWeightKg','Total Weight (kg)','إجمالي الوزن (كجم)'],['sender','Sender','مسلم'],['receiver','Receiver','مستلم'],['receiptNo','Receipt No.','رقم الإيصال'],['vehicleNo','Vehicle No.','رقم السيارة']
+];
+const $=id=>document.getElementById(id);
+function lang(){return localStorage.getItem('alfaLabsLang')==='ar'?'ar':'en'}
+function clean(v){return String(v??'').trim()}
+function fmt(v){return Number(v||0).toLocaleString('en-US',{maximumFractionDigits:2})}
+function dateObj(s){const d=new Date(s+'T00:00:00');return isNaN(d)?null:d}
+function populate(){const opts=(id,vals,all)=>{const e=$(id),old=e.value;e.innerHTML='<option value="">'+all+'</option>'+vals.map(v=>'<option value="'+String(v).replace(/"/g,'&quot;')+'">'+v+'</option>').join('');if(vals.includes(old))e.value=old};
+ const days=[...new Set(DATA.map(r=>dateObj(r.date)?.getDate()).filter(Boolean))].sort((a,b)=>a-b);
+ const months=[...new Set(DATA.map(r=>dateObj(r.date)?.getMonth()+1).filter(Boolean))].sort((a,b)=>a-b);
+ const years=[...new Set(DATA.map(r=>dateObj(r.date)?.getFullYear()).filter(Boolean))].sort((a,b)=>a-b);
+ const companies=[...new Set(DATA.map(r=>clean(r.company)).filter(Boolean))].sort();
+ const types=[...new Set(DATA.map(r=>clean(r.wasteTypeAr)).filter(Boolean))].sort();
+ const L=lang(),monthNames=L==='ar'?['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر']:['January','February','March','April','May','June','July','August','September','October','November','December'];
+ opts('dayFilter',days,I18N[L].allDays);opts('monthFilter',months.map(n=>n+':'+monthNames[n-1]),I18N[L].allMonths);opts('yearFilter',years,I18N[L].allYears);opts('companyFilter',companies,I18N[L].allCompanies);opts('typeFilter',types,I18N[L].allTypes);
+}
+function apply(){const day=$('dayFilter').value,month=($('monthFilter').value||'').split(':')[0],year=$('yearFilter').value,company=$('companyFilter').value,type=$('typeFilter').value;
+ FILTERED=DATA.filter(r=>{const d=dateObj(r.date);return (!day||d.getDate()==day)&&(!month||d.getMonth()+1==month)&&(!year||d.getFullYear()==year)&&(!company||r.company===company)&&(!type||r.wasteTypeAr===type)});
+ render();
+}
+function aggregate(rows,key){const m={};rows.forEach(r=>{const k=clean(r[key])||'—';m[k]=(m[k]||0)+Number(r.totalWeightKg||0)});return Object.entries(m).sort((a,b)=>b[1]-a[1])}
+function draw(id,rows){const e=$(id);if(!rows.length){e.innerHTML='<div class="empty">No data for the selected filters.</div>';return}const max=Math.max(...rows.map(x=>x[1]),1);e.innerHTML=rows.slice(0,10).map(x=>'<div class="bar-row"><div class="bar-label" title="'+x[0]+'">'+x[0]+'</div><div class="track"><div class="fill" style="width:'+Math.max(3,x[1]/max*100)+'%"></div></div><div class="bar-value">'+fmt(x[1])+' kg</div></div>').join('')}
+function render(){const L=lang(),weight=FILTERED.reduce((s,r)=>s+Number(r.totalWeightKg||0),0),bags=FILTERED.reduce((s,r)=>s+Number(r.bags||0),0),boxes=FILTERED.reduce((s,r)=>s+Number(r.safetyBoxes||0),0);
+ $('kpiWeight').textContent=fmt(weight);$('kpiRecords').textContent=fmt(FILTERED.length);$('kpiBags').textContent=fmt(bags);$('kpiBoxes').textContent=fmt(boxes);$('resultInfo').textContent=fmt(FILTERED.length)+' '+(FILTERED.length===1?I18N[L].record:I18N[L].records);$('tableCount').textContent=fmt(FILTERED.length)+' '+I18N[L].records;
+ draw('typeChart',aggregate(FILTERED,'wasteTypeAr'));draw('floorChart',aggregate(FILTERED,'floorAr'));draw('companyChart',aggregate(FILTERED,'company'));draw('movementChart',aggregate(FILTERED,'movementAr'));renderTable();
+}
+function renderTable(){const L=lang();$('thead').innerHTML=FIELDS.map(f=>'<th>'+f[L==='ar'?2:1]+'</th>').join('');$('tbody').innerHTML=FILTERED.length?FILTERED.map(r=>'<tr>'+FIELDS.map(f=>'<td>'+escapeHtml(r[f[0]])+'</td>').join('')+'</tr>').join(''):'<tr><td class="empty" colspan="'+FIELDS.length+'">No records found.</td></tr>';$('tableFootLeft').textContent=L==='ar'?'المعمل المركزي':'Central Lab';$('tableFootRight').textContent=I18N[L].allFields}
+function escapeHtml(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function translateStatic(){const L=lang();document.documentElement.lang=L;document.documentElement.dir=L==='ar'?'rtl':'ltr';populate();$('applyBtn').textContent=L==='ar'?'تطبيق المرشحات':'Apply Filters';$('resetBtn').textContent=L==='ar'?'إعادة تعيين':'Reset';$('reportBtn').querySelector('span').textContent=I18N[L].report;render()}
+function tick(){const d=new Date(),el=$('liveClock'),m=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],h=d.getHours(),ap=h>=12?'PM':'AM';el.textContent='Today • '+String(d.getDate()).padStart(2,'0')+' '+m[d.getMonth()]+' '+d.getFullYear()+' • '+String(h%12||12).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+':'+String(d.getSeconds()).padStart(2,'0')+' '+ap}
+async function load(){try{const r=await fetch('./environment-data.json',{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);const d=await r.json();DATA=Array.isArray(d)?d:d.records||[];populate();apply();}catch(e){console.error(e);$('resultInfo').textContent='Data load failed'}}
+$('applyBtn').onclick=apply;$('resetBtn').onclick=()=>{['dayFilter','monthFilter','yearFilter','companyFilter','typeFilter'].forEach(id=>$(id).value='');apply()};setInterval(tick,1000);tick();
+window.addEventListener('hseLangChanged',translateStatic);window.addEventListener('storage',e=>{if(e.key==='alfaLabsLang')translateStatic()});
+load();
+async function report(){const L=lang();$('reportBtn').disabled=true;const old=$('reportBtn').innerHTML;$('reportBtn').innerHTML='⏳ <span>'+I18N[L].preparing+'</span>';try{
+ if(!window.jspdf){await new Promise((ok,no)=>{const s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js';s.onload=ok;s.onerror=no;document.head.appendChild(s)})}
+ const {jsPDF}=window.jspdf;const doc=new jsPDF({orientation:'landscape',unit:'mm',format:'a4',compress:true});const logo=await fetch('./LOGOG.png').then(r=>r.blob()).then(b=>new Promise(ok=>{const f=new FileReader();f.onload=()=>ok(f.result);f.readAsDataURL(b)})).catch(()=>null);
+ let page=0;function head(){page++;const pw=doc.internal.pageSize.getWidth(),ph=doc.internal.pageSize.getHeight();doc.setFillColor(11,49,87);doc.rect(0,0,pw,13,'F');if(logo)doc.addImage(logo,'PNG',12,17,25,18);doc.setTextColor(23,54,93);doc.setFont('helvetica','bold');doc.setFontSize(16);doc.text('Alfa Labs HSE Management Dashboard',43,28);doc.setFontSize(9);doc.setTextColor(110,125,140);doc.text(L==='ar'?'تقرير البيئة — المعمل المركزي':'Environment Report — Central Lab',43,35);doc.setDrawColor(225,234,241);doc.line(12,41,pw-12,41);doc.setFontSize(8);doc.text(new Date().toLocaleString('en-GB'),12,ph-7);doc.text('Page '+page,pw-12,ph-7,{align:'right'});doc.setTextColor(23,54,93)}
+ head();doc.setFontSize(11);doc.setFont('helvetica','bold');doc.text(L==='ar'?'ملخص السجلات المفلترة':'Filtered Register Summary',12,51);
+ const summary=[['Records',FILTERED.length],['Total Weight (kg)',FILTERED.reduce((s,r)=>s+Number(r.totalWeightKg||0),0)],['Bags / Containers',FILTERED.reduce((s,r)=>s+Number(r.bags||0),0)],['Safety Boxes',FILTERED.reduce((s,r)=>s+Number(r.safetyBoxes||0),0)]];
+ summary.forEach((x,i)=>{doc.setFillColor(247,250,253);doc.roundedRect(12+i*66,56,61,20,3,3,'F');doc.setFontSize(7);doc.setTextColor(100,120,140);doc.text(x[0],15+i*66,63);doc.setTextColor(23,54,93);doc.setFontSize(13);doc.text(fmt(x[1]),15+i*66,71)});
+ let y=84;FILTERED.forEach((r,idx)=>{if(y>175){doc.addPage();head();y=51}doc.setFillColor(242,247,252);doc.roundedRect(12,y,273,7,2,2,'F');doc.setFont('helvetica','bold');doc.setFontSize(8);doc.setTextColor(23,54,93);doc.text((L==='ar'?'السجل ':'Record ')+r.id,15,y+5);doc.setFont('helvetica','normal');doc.setFontSize(7);doc.text(r.date+' • '+r.time,48,y+5);y+=10;const pairs=FIELDS.map(f=>[f[L==='ar'?2:1],String(r[f[0]]??'')||'—']);for(let i=0;i<pairs.length;i+=3){if(y>188){doc.addPage();head();y=51}for(let j=0;j<3;j++){const p=pairs[i+j];if(!p)continue;const x=12+j*91;doc.setTextColor(105,122,138);doc.setFontSize(6);doc.setFont('helvetica','bold');doc.text(p[0],x,y);doc.setTextColor(35,58,80);doc.setFont('helvetica','normal');doc.setFontSize(7);const val=p[1].length>48?p[1].slice(0,46)+'…':p[1];doc.text(val,x,y+5,{maxWidth:84});}y+=11}y+=3});
+ doc.save('Alfa_Labs_Environment_Central_Lab_'+new Date().toISOString().slice(0,10)+'.pdf');$('toast').textContent=I18N[L].created;$('toast').style.display='block';setTimeout(()=>$('toast').style.display='none',3500);
+ }catch(e){console.error(e);alert(I18N[L].failed+' '+e.message)}finally{$('reportBtn').disabled=false;$('reportBtn').innerHTML=old}}
+$('reportBtn').onclick=report;
+</script>
+<script src="./sidebar-standard.js"></script>
+<script>
+(function(){if(!window.__envLangHook){window.__envLangHook=true;const obs=new MutationObserver(()=>{if(localStorage.getItem('alfaLabsLang')!==document.documentElement.lang)translateStatic()});obs.observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']})}})();
+</script>
+</body></html>
