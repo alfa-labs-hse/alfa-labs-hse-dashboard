@@ -28,6 +28,7 @@
     `;document.head.appendChild(fs);
     function buildFooter(){document.querySelectorAll('.footer').forEach(function(f){f.innerHTML='<div class="footer-brand">جميع الحقوق محفوظة لـ الفا لاب</div><div class="footer-copy">إدارة البيئة والسلامة والصحة المهنية</div><div class="footer-created"><span class="footer-created-label">Created</span><span>Hossam Elsharabasy — HSE Manager</span></div><div class="footer-tag">🛡️ Safety First • Safety Is Everyone’s Responsibility</div>';});}
     buildFooter();
+    if(!document.querySelector('script[data-alfa-global-ui]')){const g=document.createElement('script');g.src='./global-ui.js';g.async=false;g.dataset.alfaGlobalUi='1';document.head.appendChild(g);}
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
