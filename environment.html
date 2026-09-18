@@ -13,35 +13,35 @@
 <div class="sidebar-overlay"></div>
 <main class="main">
 <header class="unified-header">
-<div class="unified-left"><button class="mobile-menu-btn" id="mobileMenuBtn">☰</button><div class="unified-title"><h1>Environment | البيئة</h1><p>Central Lab • Medical Waste Management</p></div></div>
+<div class="unified-left"><button class="mobile-menu-btn" id="mobileMenuBtn">☰</button><div class="unified-title"><h1>Environment</h1><p>Central Lab • Medical Waste Management</p></div></div>
 <div class="unified-meta"><div class="live-clock" id="liveClock">Today</div></div>
 </header>
 <section class="content">
-<div class="hero"><div><h2>Environment | البيئة</h2><p>Central Lab environmental data • Medical waste transfer and handover register</p></div><div class="hero-badge">🏢 Central Lab Only</div></div>
-<div class="section-title"><h3>Filters | المرشحات</h3><span id="resultInfo">—</span></div>
+<div class="hero"><div><h2>Environment</h2><p>Central Lab environmental data • Medical waste transfer and handover register</p></div><div class="hero-badge">🏢 Central Lab Only</div></div>
+<div class="section-title"><h3>Filters</h3><span id="resultInfo">—</span></div>
 <div class="filters">
-<div class="field"><label>Day | اليوم</label><select id="dayFilter"><option value="">All Days</option></select></div>
-<div class="field"><label>Month | الشهر</label><select id="monthFilter"><option value="">All Months</option></select></div>
-<div class="field"><label>Year | السنة</label><select id="yearFilter"><option value="">All Years</option></select></div>
-<div class="field"><label>Company | الشركة</label><select id="companyFilter"><option value="">All Companies</option></select></div>
-<div class="field"><label>Waste Type | نوع المخلف</label><select id="typeFilter"><option value="">All Waste Types</option></select></div>
+<div class="field"><label>Day</label><select id="dayFilter"><option value="">All Days</option></select></div>
+<div class="field"><label>Month</label><select id="monthFilter"><option value="">All Months</option></select></div>
+<div class="field"><label>Year</label><select id="yearFilter"><option value="">All Years</option></select></div>
+<div class="field"><label>Company</label><select id="companyFilter"><option value="">All Companies</option></select></div>
+<div class="field"><label>Waste Type</label><select id="typeFilter"><option value="">All Waste Types</option></select></div>
 <div class="field filter-actions"><button class="btn btn-primary" id="applyBtn">Apply Filters</button><button class="btn btn-light" id="resetBtn">Reset</button></div>
 </div>
-<div class="section-title"><h3>Environmental Summary | الملخص البيئي</h3><span id="dataSource">Source: Central Lab register</span></div>
+<div class="section-title"><h3>Environmental Summary</h3><span id="dataSource">Source: Central Lab register</span></div>
 <div class="kpis">
-<div class="kpi"><div class="kpi-label">Total Waste Weight | إجمالي وزن المخلفات</div><div class="kpi-value" id="kpiWeight">0</div><div class="kpi-sub">kg | كجم</div></div>
-<div class="kpi"><div class="kpi-label">Records | السجلات</div><div class="kpi-value" id="kpiRecords">0</div><div class="kpi-sub">handover records</div></div>
-<div class="kpi"><div class="kpi-label">Bags / Containers | الأكياس / العبوات</div><div class="kpi-value" id="kpiBags">0</div><div class="kpi-sub">reported quantity</div></div>
-<div class="kpi"><div class="kpi-label">Safety Boxes | صناديق الأمان</div><div class="kpi-value" id="kpiBoxes">0</div><div class="kpi-sub">reported quantity</div></div>
+<div class="kpi"><div class="kpi-label">Total Waste Weight</div><div class="kpi-value" id="kpiWeight">0</div><div class="kpi-sub">kg | كجم</div></div>
+<div class="kpi"><div class="kpi-label">Records</div><div class="kpi-value" id="kpiRecords">0</div><div class="kpi-sub">handover records</div></div>
+<div class="kpi"><div class="kpi-label">Bags / Containers</div><div class="kpi-value" id="kpiBags">0</div><div class="kpi-sub">reported quantity</div></div>
+<div class="kpi"><div class="kpi-label">Safety Boxes</div><div class="kpi-value" id="kpiBoxes">0</div><div class="kpi-sub">reported quantity</div></div>
 </div>
-<div class="section-title"><h3>Environmental Analysis | التحليل البيئي</h3><span>Based on filtered records</span></div>
+<div class="section-title"><h3>Environmental Analysis</h3><span>Based on filtered records</span></div>
 <div class="charts">
-<div class="card"><h3>Waste by Type | المخلفات حسب النوع</h3><div class="chart" id="typeChart"></div></div>
-<div class="card"><h3>Waste by Floor | المخلفات حسب الدور</h3><div class="chart" id="floorChart"></div></div>
-<div class="card"><h3>Waste by Company | المخلفات حسب الشركة</h3><div class="chart" id="companyChart"></div></div>
-<div class="card"><h3>Movement Type | نوع الحركة</h3><div class="chart" id="movementChart"></div></div>
+<div class="card"><h3>Waste by Type</h3><div class="chart" id="typeChart"></div></div>
+<div class="card"><h3>Waste by Floor</h3><div class="chart" id="floorChart"></div></div>
+<div class="card"><h3>Waste by Company</h3><div class="chart" id="companyChart"></div></div>
+<div class="card"><h3>Movement Type</h3><div class="chart" id="movementChart"></div></div>
 </div>
-<div class="section-title"><h3>Waste Transfer Register | سجل تسليم وتسلم النفايات</h3><span id="tableCount">0 records</span></div>
+<div class="section-title"><h3>Waste Transfer Register</h3><span id="tableCount">0 records</span></div>
 <div class="card table-card"><div class="table-wrap"><table class="data-table"><thead><tr id="thead"></tr></thead><tbody id="tbody"></tbody></table></div><div class="table-foot"><span id="tableFootLeft">Central Lab</span><span id="tableFootRight">All source fields retained</span></div></div>
 <div class="notice">Data scope: Central Lab only. The dashboard uses the uploaded register as its source and does not add records that are not present in the register.</div>
 </section>
@@ -55,7 +55,7 @@ const I18N={
  ar:{allDays:'كل الأيام',allMonths:'كل الشهور',allYears:'كل السنوات',allCompanies:'كل الشركات',allTypes:'كل أنواع المخلفات',records:'سجلات',record:'سجل',kg:'كجم',source:'المصدر: سجل المعمل المركزي',central:'المعمل المركزي',allFields:'تم الاحتفاظ بكل حقول المصدر',report:'الحصول على تقرير',preparing:'جاري إعداد التقرير…',created:'تم إنشاء التقرير بنجاح.',failed:'فشل إنشاء التقرير.'}
 };
 const FIELDS=[
- ['id','No.','م'],['date','Date','التاريخ'],['dayAr','Day','اليوم'],['time','Collection Time','ساعة الاستلام'],['company','Company','اسم الشركة'],['floorAr','Floor','الدور'],['movementAr','Movement Type','نوع الحركة'],['wasteTypeAr','Waste Type','نوع المخلف'],['bags','Bags / Containers','عدد الأكياس / العبوات'],['bagsWeightKg','Bags / Containers Weight (kg)','وزن الأكياس / العبوات (كجم)'],['safetyBoxes','Safety Boxes','عدد صناديق الأمان'],['safetyBoxesWeightKg','Safety Boxes Weight (kg)','وزن صناديق الأمان (كجم)'],['totalWeightKg','Total Weight (kg)','إجمالي الوزن (كجم)'],['sender','Sender','مسلم'],['receiver','Receiver','مستلم'],['receiptNo','Receipt No.','رقم الإيصال'],['vehicleNo','Vehicle No.','رقم السيارة']
+ ['id','No.','No.'],['date','Date','Date'],['dayAr','Day','Day'],['time','Collection Time','Collection Time'],['company','Company','Company'],['floorAr','Floor','Floor'],['movementAr','Movement Type','Movement Type'],['wasteTypeAr','Waste Type','Waste Type'],['bags','Bags / Containers','Bags / Containers'],['bagsWeightKg','Bags / Containers Weight (kg)','Bags / Containers Weight (kg)'],['safetyBoxes','Safety Boxes','Safety Boxes'],['safetyBoxesWeightKg','Safety Boxes Weight (kg)','Safety Boxes Weight (kg)'],['totalWeightKg','Total Weight (kg)','Total Weight (kg)'],['sender','Sender','Sender'],['receiver','Receiver','Receiver'],['receiptNo','Receipt No.','Receipt No.'],['vehicleNo','Vehicle No.','Vehicle No.']
 ];
 const $=id=>document.getElementById(id);
 function lang(){return localStorage.getItem('alfaLabsLang')==='ar'?'ar':'en'}
@@ -83,8 +83,7 @@ function render(){const L=lang(),weight=FILTERED.reduce((s,r)=>s+Number(r.totalW
 }
 function renderTable(){const L=lang();$('thead').innerHTML=FIELDS.map(f=>'<th>'+f[L==='ar'?2:1]+'</th>').join('');$('tbody').innerHTML=FILTERED.length?FILTERED.map(r=>'<tr>'+FIELDS.map(f=>'<td>'+escapeHtml(r[f[0]])+'</td>').join('')+'</tr>').join(''):'<tr><td class="empty" colspan="'+FIELDS.length+'">No records found.</td></tr>';$('tableFootLeft').textContent=L==='ar'?'المعمل المركزي':'Central Lab';$('tableFootRight').textContent=I18N[L].allFields}
 function escapeHtml(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-function localizePipe(){const L=lang();const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);const nodes=[];while(w.nextNode())nodes.push(w.currentNode);nodes.forEach(n=>{if(!n.parentElement||/^(SCRIPT|STYLE|CANVAS)$/.test(n.parentElement.tagName))return;const raw=n.dataset.envRaw||(n.dataset.envRaw=n.nodeValue);const i=raw.indexOf(' | ');if(i>0){const a=raw.slice(0,i).trim(),b=raw.slice(i+3).trim();n.nodeValue=L==='ar'?b:a}})}
-function translateStatic(){const L=lang();document.documentElement.lang=L;document.documentElement.dir=L==='ar'?'rtl':'ltr';localizePipe();populate();$('applyBtn').textContent=L==='ar'?'تطبيق المرشحات':'Apply Filters';$('resetBtn').textContent=L==='ar'?'إعادة تعيين':'Reset';$('reportBtn').querySelector('span').textContent=I18N[L].report;render()}
+function translateStatic(){const L=lang();document.documentElement.lang=L;document.documentElement.dir=L==='ar'?'rtl':'ltr';populate();$('applyBtn').textContent=L==='ar'?'تطبيق المرشحات':'Apply Filters';$('resetBtn').textContent=L==='ar'?'إعادة تعيين':'Reset';$('reportBtn').querySelector('span').textContent=I18N[L].report;render()}
 function tick(){const d=new Date(),el=$('liveClock'),m=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],h=d.getHours(),ap=h>=12?'PM':'AM';el.textContent='Today • '+String(d.getDate()).padStart(2,'0')+' '+m[d.getMonth()]+' '+d.getFullYear()+' • '+String(h%12||12).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+':'+String(d.getSeconds()).padStart(2,'0')+' '+ap}
 async function load(){try{const r=await fetch('./environment-data.json',{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);const d=await r.json();DATA=Array.isArray(d)?d:d.records||[];populate();apply();}catch(e){console.error(e);$('resultInfo').textContent='Data load failed'}}
 $('applyBtn').onclick=apply;$('resetBtn').onclick=()=>{['dayFilter','monthFilter','yearFilter','companyFilter','typeFilter'].forEach(id=>$(id).value='');apply()};setInterval(tick,1000);tick();
