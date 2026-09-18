@@ -82,7 +82,7 @@ function addUserBadge(){
   if(document.getElementById('alfa-user-badge'))return;
   const host=document.querySelector('.unified-meta,.header-actions,.user')||document.body;
   const wrap=document.createElement('div');wrap.id='alfa-user-badge';
-  const displayName=s.email.toLowerCase()==='hossam.elsharabasy@alfalabs.com'?'حسام الشرباصي':s.email.split('@')[0];
+  const displayName=s.email.split('@')[0];
   wrap.innerHTML='<span class="alfa-role-pill">'+(s.role==='admin'?'ADMIN':'VIEW ONLY')+'</span><span class="alfa-user-email" title="'+s.email+'">'+displayName+'</span><button type="button" id="alfa-logout">Logout</button>';
   host.appendChild(wrap);
   document.getElementById('alfa-logout').onclick=()=>{clearSession();location.replace('./login.html')};
