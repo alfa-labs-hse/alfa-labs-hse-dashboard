@@ -473,10 +473,10 @@ html{scroll-behavior:smooth}body{font-family:Arial,Tahoma,sans-serif;background:
 
 function norm(v){return String(v??'').trim().toLowerCase()}
 function riskKey(v){let s=norm(v);if(s.includes('critical')||s.includes('حرج'))return'Critical';if(s.includes('high')||s.includes('عالي'))return'High';if(s.includes('medium')||s.includes('متوسط'))return'Medium';if(s.includes('low')||s.includes('منخفض'))return'Low';return''}
-function statusKey(v){let s=norm(v);if(s.includes('open')||s.includes('مفتوح'))return'Open';if(s.includes('progress')||s.includes('تنفيذ'))return'In Progress';if(s.includes('closed')||s.includes('مغلق'))return'Closed';return''}
+function statusKey(v){let s=norm(v);if(s.includes('open')||s.includes('مفتوح')||s.includes('مفتوحة'))return'Open';if(s.includes('progress')||s.includes('تنفيذ')||s.includes('قيد التنفيذ'))return'In Progress';if(s.includes('closed')||s.includes('مغلق')||s.includes('مغلقة'))return'Closed';return''}
 const fmt=n=>Number(n||0).toLocaleString('en-US');
 function set(id,val){const e=document.getElementById(id);if(e)e.textContent=fmt(val)}
-function buildRiskChart(counts,total){const chart=document.getElementById('riskChart');const max=Math.max(...Object.values(counts),1);chart.innerHTML=Object.entries(counts).map(([k,v])=>`<div class="bar-wrap"><div class="bar-value">${fmt(v)}</div><div class="bar ${k.toLowerCase()}" style="height:${Math.max(4,(v/max)*88)}%"></div><div class="bar-label">${k}</div></div>`).join('');document.getElementById('riskTotal').textContent=fmt(total)+' records'}
+function buildRiskChart(counts,total){const chart=document.getElementById('riskChart');if(!chart)return;const max=Math.max(...Object.values(counts),1);chart.innerHTML=Object.entries(counts).map(([k,v])=>`<div class="bar-wrap"><div class="bar-value">${fmt(v)}</div><div class="bar ${k.toLowerCase()}" style="height:${Math.max(4,(v/max)*88)}%"></div><div class="bar-label">${k}</div></div>`).join('');const rt=document.getElementById('riskTotal');if(rt)rt.textContent=fmt(total)+' records'}
 function buildDonut(open,progress,closed,total){const a=total?open/total*100:0,b=total?progress/total*100:0;document.getElementById('statusDonut').style.background=`conic-gradient(#315d91 0 ${a}%,#d97722 ${a}% ${a+b}%,#23834b ${a+b}% 100%)`;document.getElementById('statusRate').textContent=total?Math.round(closed/total*100)+'% closed':'—'}
 async function loadCapa(){
   try{
