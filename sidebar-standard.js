@@ -26,9 +26,9 @@
       @media(max-width:800px){.footer{margin-top:14px!important;padding:7px 8px!important;gap:7px!important}.footer-brand,.footer-copy,.footer-tag,.footer-created{font-size:8px!important;height:22px!important}.footer-created{padding:3px 6px!important}.footer-created-label{margin-right:3px!important}}
       @media(max-width:430px){.footer{padding:6px 4px!important;gap:4px!important}.footer-brand,.footer-copy,.footer-tag,.footer-created{font-size:7px!important;height:20px!important}.footer-created{padding:2px 5px!important}.footer-created-label{margin-right:2px!important}}
     `;document.head.appendChild(fs);
-    function buildFooter(){document.querySelectorAll('.footer').forEach(function(f){f.innerHTML='<div class="footer-brand">جميع الحقوق محفوظة لـ الفا لاب</div><div class="footer-copy">إدارة البيئة والسلامة والصحة المهنية</div><div class="footer-created"><span class="footer-created-label">Created</span><span>Hossam Elsharabasy — HSE Manager</span></div><div class="footer-tag">🛡️ Safety First • Safety Is Everyone’s Responsibility</div>';});}
+    function buildFooter(){document.querySelectorAll('.footer').forEach(function(f){f.innerHTML='<div class="footer-brand">Alfa Labs</div><div class="footer-copy">Environment, Health &amp; Safety Management</div><div class="footer-created"><span class="footer-created-label">Created</span><span>Hossam Elsharabasy — HSE Manager</span></div><div class="footer-tag">🛡️ Safety First • Safety Is Everyone’s Responsibility</div>';});}
     buildFooter();
-    if(!document.querySelector('script[data-alfa-global-ui]')){const g=document.createElement('script');g.src='./global-ui.js';g.async=false;g.dataset.alfaGlobalUi='1';document.head.appendChild(g);}
+    if(!document.querySelector('script[data-alfa-global-ui]')){const g=document.createElement('script');g.src='./global-ui.js?v=20260918';g.async=false;g.dataset.alfaGlobalUi='1';document.head.appendChild(g);}
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
