@@ -82,7 +82,8 @@ function addUserBadge(){
   if(document.getElementById('alfa-user-badge'))return;
   const host=document.querySelector('.unified-meta,.header-actions,.user')||document.body;
   const wrap=document.createElement('div');wrap.id='alfa-user-badge';
-  wrap.innerHTML='<span class="alfa-role-pill">'+(s.role==='admin'?'ADMIN':'VIEW ONLY')+'</span><span class="alfa-user-email">'+s.email+'</span><button type="button" id="alfa-logout">Logout</button>';
+  const displayName=s.email.toLowerCase()==='hossam.elsharabasy@alfalabs.com'?'حسام الشرباصي':s.email.split('@')[0];
+  wrap.innerHTML='<span class="alfa-role-pill">'+(s.role==='admin'?'ADMIN':'VIEW ONLY')+'</span><span class="alfa-user-email" title="'+s.email+'">'+displayName+'</span><button type="button" id="alfa-logout">Logout</button>';
   host.appendChild(wrap);
   document.getElementById('alfa-logout').onclick=()=>{clearSession();location.replace('./login.html')};
 }
@@ -93,4 +94,26 @@ function init(){
 }
 window.AlfaHSEAuth={CONFIG,getSession,setSession,clearSession,isAllowed,roleFor,guard,toast};
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+/* Compact user identity — show display name, not full email */
+(function(){
+  function addAuthStyle(){
+    if(document.getElementById('alfa-auth-name-style'))return;
+    const s=document.createElement('style');s.id='alfa-auth-name-style';s.textContent=`
+      #alfa-user-badge{display:flex;align-items:center;gap:8px;direction:ltr;min-width:0}
+      #alfa-user-badge .alfa-user-email{font-weight:800;color:#17365d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:190px}
+      #alfa-user-badge .alfa-role-pill{font-weight:900;font-size:10px}
+      #alfa-logout{border:0;background:#eef2f6;color:#17365d;border-radius:9px;padding:6px 9px;font-weight:800;cursor:pointer}
+      html.hse-dark #alfa-user-badge .alfa-user-email{color:#eaf2fb}
+      html.hse-dark #alfa-logout{background:#24384d;color:#eaf2fb}
+      @media(max-width:700px){
+        #alfa-user-badge{width:100%;justify-content:center;gap:7px;margin-top:7px;direction:ltr}
+        #alfa-user-badge .alfa-user-email{font-size:13px;max-width:170px}
+        #alfa-user-badge .alfa-role-pill{font-size:9px}
+        #alfa-logout{font-size:11px;padding:6px 9px}
+      }
+      @media(max-width:390px){#alfa-user-badge .alfa-user-email{font-size:12px;max-width:150px}}
+    `;document.head.appendChild(s);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',addAuthStyle);else addAuthStyle();
 })();
