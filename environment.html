@@ -101,7 +101,7 @@ async function report(){const L=lang();$('reportBtn').disabled=true;const old=$(
  }catch(e){console.error(e);alert(I18N[L].failed+' '+e.message)}finally{$('reportBtn').disabled=false;$('reportBtn').innerHTML=old}}
 $('reportBtn').onclick=report;
 </script>
-<script src="./sidebar-standard.js"></script>
+<script src="./sidebar-standard.js?v=20260918.6"></script>
 <script>
 (function(){if(!window.__envLangHook){window.__envLangHook=true;const obs=new MutationObserver(()=>{if(localStorage.getItem('alfaLabsLang')!==document.documentElement.lang)translateStatic()});obs.observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']})}})();
 </script>
