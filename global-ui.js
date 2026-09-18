@@ -71,6 +71,236 @@ html[data-hse-lang="ar"] #alfa-weather{direction:rtl}
 @media(max-width:430px){.unified-header{padding-top:14px!important;padding-bottom:14px!important}.unified-title{padding-top:4px!important}.unified-title h1,.unified-title h2{line-height:1.2!important}#alfa-weather{max-width:155px}.wx-extra{display:none!important}}
 \nhtml[data-hse-lang="ar"] .content,html[data-hse-lang="ar"] .banner,html[data-hse-lang="ar"] .hero,html[data-hse-lang="ar"] .filters,html[data-hse-lang="ar"] .filters-card,html[data-hse-lang="ar"] .table-card{text-align:right}html[data-hse-lang="ar"] .unified-title,html[data-hse-lang="ar"] .title{text-align:right}html[data-hse-lang="ar"] .field label,html[data-hse-lang="ar"] th{text-align:right}
 @media(max-width:800px){#hse-global-controls{gap:7px;margin-left:0}#hse-global-controls button{padding:9px 11px;min-width:66px;min-height:38px;font-size:12px;border-radius:10px}}@media(max-width:430px){#hse-global-controls{gap:5px}#hse-global-controls button{padding:8px 9px;min-width:60px;min-height:36px;font-size:11px}}
+`
+/* GLOBAL MOBILE SYSTEM — iPhone Safari + Android Chrome — ALL PAGES */
+@media (max-width:700px){
+  html{width:100%;max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%}
+  body{width:100%;max-width:100%;overflow-x:hidden;overscroll-behavior-x:none}
+
+  /* Same header structure on Home, CAPA, Training, Environment and future pages */
+  .unified-header{
+    width:100%!important;
+    box-sizing:border-box!important;
+    display:block!important;
+    min-height:0!important;
+    height:auto!important;
+    padding:14px 14px 15px!important;
+    margin:0!important;
+    background:#fff!important;
+    border-bottom:1px solid #e3eaf1!important;
+  }
+  .unified-left{
+    width:100%!important;
+    min-width:0!important;
+    display:grid!important;
+    grid-template-columns:44px 44px minmax(0,1fr)!important;
+    align-items:center!important;
+    gap:8px!important;
+    box-sizing:border-box!important;
+  }
+  .mobile-menu-btn{
+    width:44px!important;height:44px!important;
+    min-width:44px!important;min-height:44px!important;
+    margin:0!important;padding:0!important;
+    display:grid!important;place-items:center!important;
+    position:relative!important;z-index:2010!important;
+    border-radius:10px!important;
+    touch-action:manipulation!important;
+  }
+  .mobile-header-logo{
+    width:44px!important;height:44px!important;
+    min-width:44px!important;min-height:44px!important;
+    margin:0!important;padding:4px!important;
+    object-fit:contain!important;
+    border-radius:9px!important;
+  }
+  .unified-title{
+    min-width:0!important;width:100%!important;
+    margin:0!important;padding:0!important;
+    text-align:left!important;
+    box-sizing:border-box!important;
+  }
+  .unified-title h1,.unified-title h2{
+    margin:0!important;
+    color:#17365d!important;
+    font-size:20px!important;
+    line-height:1.18!important;
+    font-weight:800!important;
+    white-space:normal!important;
+    overflow:visible!important;
+    text-overflow:clip!important;
+  }
+  .unified-title p{
+    margin:4px 0 0!important;
+    color:#71808e!important;
+    font-size:10px!important;
+    line-height:1.35!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+
+  .unified-meta{
+    width:100%!important;
+    min-width:0!important;
+    margin-top:10px!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+    grid-template-areas:
+      "weather clock"
+      "status user"
+      "controls controls"!important;
+    gap:7px!important;
+    align-items:center!important;
+    box-sizing:border-box!important;
+    direction:ltr!important;
+  }
+  #dateBox{display:none!important}
+  #alfa-weather{
+    grid-area:weather!important;
+    width:100%!important;
+    max-width:none!important;
+    min-width:0!important;
+    min-height:48px!important;
+    box-sizing:border-box!important;
+    justify-content:center!important;
+    padding:6px 8px!important;
+    border-radius:12px!important;
+  }
+  #alfa-weather .wx-icon{font-size:20px!important}
+  #alfa-weather .wx-temp{font-size:14px!important}
+  #alfa-weather .wx-place{font-size:9px!important}
+  #alfa-weather .wx-extra{font-size:8px!important}
+
+  .live-clock{
+    grid-area:clock!important;
+    width:100%!important;
+    min-width:0!important;
+    min-height:48px!important;
+    height:48px!important;
+    box-sizing:border-box!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    text-align:center!important;
+    padding:6px 7px!important;
+    border-radius:12px!important;
+    font-size:10px!important;
+    line-height:1.25!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+  .update-status{
+    grid-area:status!important;
+    width:100%!important;
+    min-width:0!important;
+    height:36px!important;
+    margin:0!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    font-size:9px!important;
+    white-space:nowrap!important;
+  }
+  #alfa-user-badge{
+    grid-area:user!important;
+    width:100%!important;
+    min-width:0!important;
+    margin:0!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:6px!important;
+    overflow:hidden!important;
+  }
+  #alfa-user-badge .alfa-user-email{
+    max-width:150px!important;
+    min-width:0!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    white-space:nowrap!important;
+    font-size:12px!important;
+  }
+  #alfa-user-badge .alfa-role-pill{font-size:8px!important;white-space:nowrap!important}
+  #alfa-logout{font-size:10px!important;padding:6px 8px!important;white-space:nowrap!important}
+  #hse-global-controls{
+    grid-area:controls!important;
+    width:100%!important;
+    min-width:0!important;
+    margin:0!important;
+    display:flex!important;
+    justify-content:center!important;
+    gap:7px!important;
+  }
+  #hse-global-controls button{
+    flex:1 1 0!important;
+    width:0!important;
+    min-width:0!important;
+    min-height:38px!important;
+    height:38px!important;
+    padding:8px 10px!important;
+    border-radius:10px!important;
+    font-size:11px!important;
+  }
+
+  /* Mobile content consistency across all pages */
+  .content,.page-content,.main-content{
+    width:100%!important;
+    max-width:100%!important;
+    box-sizing:border-box!important;
+    padding:14px!important;
+  }
+  .banner,.hero,.page-banner,.executive-banner{
+    width:100%!important;
+    max-width:100%!important;
+    box-sizing:border-box!important;
+    border-radius:14px!important;
+    overflow:hidden!important;
+  }
+  .filters,.filters-card,.filter-card,.table-card,.chart-card,.card{
+    max-width:100%!important;
+    box-sizing:border-box!important;
+  }
+  input,select,textarea,button{
+    max-width:100%!important;
+    box-sizing:border-box!important;
+  }
+  table{max-width:100%!important}
+  .table-scroll,.table-wrap,.table-responsive{
+    max-width:100%!important;
+    overflow-x:auto!important;
+    -webkit-overflow-scrolling:touch!important;
+  }
+}
+@media (max-width:430px){
+  .unified-header{padding:12px 11px 13px!important}
+  .unified-left{
+    grid-template-columns:42px 42px minmax(0,1fr)!important;
+    gap:7px!important;
+  }
+  .mobile-menu-btn,.mobile-header-logo{
+    width:42px!important;height:42px!important;
+    min-width:42px!important;min-height:42px!important;
+  }
+  .unified-title h1,.unified-title h2{font-size:18px!important;line-height:1.18!important}
+  .unified-title p{font-size:9px!important}
+  .unified-meta{gap:6px!important}
+  #alfa-weather,.live-clock{min-height:46px!important;height:46px!important}
+  #alfa-weather .wx-extra{display:none!important}
+  #alfa-user-badge .alfa-user-email{max-width:135px!important;font-size:11px!important}
+  #alfa-user-badge .alfa-role-pill{font-size:7px!important}
+  #alfa-logout{font-size:9px!important;padding:5px 7px!important}
+  #hse-global-controls{gap:6px!important}
+  #hse-global-controls button{min-height:36px!important;height:36px!important;font-size:10px!important;padding:7px 8px!important}
+  .content,.page-content,.main-content{padding:12px!important}
+}
+@media (max-width:360px){
+  .unified-left{grid-template-columns:40px 40px minmax(0,1fr)!important}
+  .mobile-menu-btn,.mobile-header-logo{width:40px!important;height:40px!important;min-width:40px!important;min-height:40px!important}
+  .unified-title h1,.unified-title h2{font-size:17px!important}
+  #alfa-user-badge .alfa-user-email{max-width:118px!important}
+}
 `;document.head.appendChild(s)}
 function init(){style();addControls();applyTheme();applyLang();new MutationObserver(m=>{if(m.some(x=>x.addedNodes?.length))setTimeout(applyLang,0)}).observe(document.body,{childList:true,subtree:true})}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();window.AlfaHSEGlobal={applyTheme,applyLang,chartTheme,M};
