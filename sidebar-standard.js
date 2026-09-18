@@ -7,7 +7,7 @@
     }
     const sidebar=document.querySelector('.sidebar');
     if(!sidebar)return;
-    const links=[['index.html','🏠','Home'],['capa.html','📋','CAPA'],['training.html','🎓','Training'],['#','👁️','Safety Observations'],['#','🚨','Incidents'],['#','⚠️','Near Miss'],['#','🔍','Inspections'],['#','🔥','Fire Safety'],['#','🩹','First Aid'],['hse-portal.html#library','📚','HSE Library'],['hse-portal.html#achievements','🏆','Achievements'],['hse-portal.html#activities','📸','HSE Activities'],['#','📊','Analytics'],['#','📄','Reports'],['#','⚙️','Settings']];
+    const links=[['index.html','🏠','Home'],['capa.html','📋','CAPA'],['training.html','🎓','Training'],['environment.html','🌱','Environment'],['#','👁️','Safety Observations'],['#','🚨','Incidents'],['#','⚠️','Near Miss'],['#','🔍','Inspections'],['#','🔥','Fire Safety'],['#','🩹','First Aid'],['hse-portal.html#library','📚','HSE Library'],['hse-portal.html#achievements','🏆','Achievements'],['hse-portal.html#activities','📸','HSE Activities'],['#','📊','Analytics'],['#','📄','Reports'],['#','⚙️','Settings']];
     const path=(location.pathname.split('/').pop()||'index.html').toLowerCase();
     sidebar.innerHTML='<div class="master-sidebar-brand"><img src="./LOGOG.png" alt="Alfa Labs Logo"><strong>Alfa Labs</strong><span>Alfa Labs • HSE Platform</span></div><nav class="master-sidebar-nav">'+links.map(function(x){const active=x[0]===path?' active':'';return '<a class="master-sidebar-link'+active+'" href="'+x[0]+'"><span class="master-sidebar-icon">'+x[1]+'</span><span>'+x[2]+'</span></a>'}).join('')+'</nav>';
     const style=document.createElement('style');style.id='master-sidebar-style';style.textContent=`
