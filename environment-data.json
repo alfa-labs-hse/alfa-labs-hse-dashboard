@@ -1,0 +1,10 @@
+{
+  "facility":"Central Lab",
+  "sourceSheet":"سجل النفايات",
+  "recordCount":3,
+  "records":[
+    {"id":1,"date":"2026-06-22","dayAr":"الاثنين","time":"01:40","company":"نقل داخلى","floorAr":"الدور الخامس","movementAr":"من الأقسام إلى غرفة التخزين","wasteTypeAr":"مخلفات بيولوجية","bags":3,"bagsWeightKg":22,"safetyBoxes":0,"safetyBoxesWeightKg":0,"totalWeightKg":22,"sender":"دياب","receiver":"عامر","receiptNo":"","vehicleNo":""},
+    {"id":2,"date":"2026-06-22","dayAr":"الاثنين","time":"01:40","company":"نقل داخلى","floorAr":"الدور الخامس","movementAr":"من الأقسام إلى غرفة التخزين","wasteTypeAr":"مخلفات بيولوجية","bags":4,"bagsWeightKg":48,"safetyBoxes":0,"safetyBoxesWeightKg":0,"totalWeightKg":48,"sender":"منتصر","receiver":"عامر","receiptNo":"","vehicleNo":""},
+    {"id":3,"date":"2026-06-22","dayAr":"الاثنين","time":"01:40","company":"نقل داخلى","floorAr":"الدور الخامس","movementAr":"من الأقسام إلى غرفة التخزين","wasteTypeAr":"مخلفات بيولوجية","bags":4,"bagsWeightKg":23,"safetyBoxes":0,"safetyBoxesWeightKg":0,"totalWeightKg":23,"sender":"على","receiver":"عامر","receiptNo":"","vehicleNo":""}
+  ]
+}
