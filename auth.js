@@ -22,17 +22,18 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 /* Compact user identity — show display name, not full email */
 (function(){function addAuthStyle(){if(document.getElementById('alfa-auth-name-style'))return;const s=document.createElement('style');s.id='alfa-auth-name-style';s.textContent=`#alfa-user-badge{display:flex;align-items:center;gap:8px;direction:ltr;min-width:0}#alfa-user-badge .alfa-user-email{font-weight:800;color:#17365d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:190px}#alfa-user-badge .alfa-role-pill{font-weight:900;font-size:10px}#alfa-logout{border:0;background:#eef2f6;color:#17365d;border-radius:9px;padding:6px 9px;font-weight:800;cursor:pointer}html.hse-dark #alfa-user-badge .alfa-user-email{color:#eaf2fb}html.hse-dark #alfa-logout{background:#24384d;color:#eaf2fb}@media(max-width:700px){#alfa-user-badge{width:100%;justify-content:center;gap:7px;margin-top:7px;direction:ltr}#alfa-user-badge .alfa-user-email{font-size:13px;max-width:170px}#alfa-user-badge .alfa-role-pill{font-size:9px}#alfa-logout{font-size:11px;padding:6px 9px}}@media(max-width:390px){#alfa-user-badge .alfa-user-email{font-size:12px;max-width:150px}}`;document.head.appendChild(s)}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',addAuthStyle);else addAuthStyle()})();
-/* Independent homepage CAPA recovery: protects KPI/chart rendering if the legacy inline block is malformed. */
+/* Independent homepage CAPA recovery — supports both / and GitHub Pages project-root paths. */
 (function(){
-  if(!/(^|\/)index\.html$/.test(location.pathname)&&location.pathname!=='/' )return;
+  const path=location.pathname.toLowerCase();
+  if(!(path==='/'||path.endsWith('/index.html')||path.endsWith('/alfa-labs-hse-dashboard/')))return;
   const norm=v=>String(v??'').trim().toLowerCase();
   const risk=v=>{const s=norm(v);if(s.includes('critical')||s.includes('حرج'))return'Critical';if(s.includes('high')||s.includes('عالي'))return'High';if(s.includes('medium')||s.includes('متوسط'))return'Medium';if(s.includes('low')||s.includes('منخفض'))return'Low';return''};
-  const status=v=>{const s=norm(v);if(s.includes('in progress')||s.includes('تنفيذ'))return'In Progress';if(s.includes('open')||s.includes('مفتوح'))return'Open';if(s.includes('closed')||s.includes('مغلق'))return'Closed';return''};
+  const status=v=>{const s=norm(v);if(s.includes('in progress')||s.includes('تنفيذ'))return'In Progress';if(s.includes('open')||s.includes('مفتوح')||s.includes('مفتوحة'))return'Open';if(s.includes('closed')||s.includes('مغلق')||s.includes('مغلقة'))return'Closed';return''};
   const fmt=n=>Number(n||0).toLocaleString('en-US');
   function put(id,n){const el=document.getElementById(id);if(el)el.textContent=fmt(n)}
   async function restore(){
     try{
-      const res=await fetch('./capa-data.json?recover=20260919',{cache:'no-store'});if(!res.ok)throw Error('CAPA HTTP '+res.status);
+      const res=await fetch('./capa-data.json?recover=20260919b',{cache:'no-store'});if(!res.ok)throw Error('CAPA HTTP '+res.status);
       const data=await res.json();if(!Array.isArray(data))throw Error('CAPA payload is not an array');
       const counts={Critical:0,High:0,Medium:0,Low:0,Open:0,'In Progress':0,Closed:0};
       data.forEach(r=>{const rk=risk(r.risk),sk=status(r.status);if(rk)counts[rk]++;if(sk)counts[sk]++});
@@ -40,8 +41,8 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
       const chart=document.getElementById('riskChart');if(chart){const mx=Math.max(counts.Critical,counts.High,counts.Medium,counts.Low,1);chart.innerHTML=['Critical','High','Medium','Low'].map(k=>`<div class="bar-wrap"><div class="bar-value">${fmt(counts[k])}</div><div class="bar ${k.toLowerCase()}" style="height:${Math.max(4,counts[k]/mx*88)}%"></div><div class="bar-label">${k}</div></div>`).join('')}
       const donut=document.getElementById('statusDonut'),total=data.length,a=total?counts.Open/total*100:0,b=total?counts['In Progress']/total*100:0;if(donut)donut.style.background=`conic-gradient(#315d91 0 ${a}%,#d97722 ${a}% ${a+b}%,#23834b ${a+b}% 100%)`;
       const rate=document.getElementById('statusRate');if(rate)rate.textContent=total?Math.round(counts.Closed/total*100)+'% closed':'—';
-      const status=document.getElementById('dataStatus');if(status)status.textContent='CAPA live data connected • '+fmt(data.length)+' records';
-    }catch(err){console.error('[Alfa HSE] CAPA recovery failed',err);const status=document.getElementById('dataStatus');if(status)status.textContent='CAPA data unavailable — refresh or contact HSE admin'}
+      const statusEl=document.getElementById('dataStatus');if(statusEl)statusEl.textContent='CAPA live data connected • '+fmt(data.length)+' records';
+    }catch(err){console.error('[Alfa HSE] CAPA recovery failed',err);const statusEl=document.getElementById('dataStatus');if(statusEl)statusEl.textContent='CAPA data unavailable — refresh or contact HSE admin'}
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',restore);else restore();
 })();
