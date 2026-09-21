@@ -149,7 +149,7 @@ html[data-hse-lang="ar"] #alfa-weather{direction:rtl}
 @media(max-width:430px){.unified-header{padding-top:14px!important;padding-bottom:14px!important}.unified-title{padding-top:4px!important}.unified-title h1,.unified-title h2{line-height:1.2!important}#alfa-weather{max-width:155px}.wx-extra{display:none!important}}
 \nhtml[data-hse-lang="ar"] .content,html[data-hse-lang="ar"] .banner,html[data-hse-lang="ar"] .hero,html[data-hse-lang="ar"] .filters,html[data-hse-lang="ar"] .filters-card,html[data-hse-lang="ar"] .table-card{text-align:right}html[data-hse-lang="ar"] .unified-title,html[data-hse-lang="ar"] .title{text-align:right}html[data-hse-lang="ar"] .field label,html[data-hse-lang="ar"] th{text-align:right}
 @media(max-width:800px){#hse-global-controls{gap:7px;margin-left:0}#hse-global-controls button{padding:9px 11px;min-width:66px;min-height:38px;font-size:12px;border-radius:10px}}@media(max-width:430px){#hse-global-controls{gap:5px}#hse-global-controls button{padding:8px 9px;min-width:60px;min-height:36px;font-size:11px}}
-`
+
 /* GLOBAL MOBILE SYSTEM — iPhone Safari + Android Chrome — ALL PAGES */
 @media (max-width:700px){
   html{width:100%;max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%}
@@ -379,7 +379,7 @@ html[data-hse-lang="ar"] #alfa-weather{direction:rtl}
   .unified-title h1,.unified-title h2{font-size:17px!important}
   #alfa-user-badge .alfa-user-email{max-width:118px!important}
 }
-`
+
 /* MOBILE PERFORMANCE MODE — iOS Safari + Android Chrome */
 @media(max-width:700px){
   html{scroll-behavior:auto!important;-webkit-text-size-adjust:100%!important}
