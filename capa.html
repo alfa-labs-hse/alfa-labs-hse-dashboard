@@ -672,9 +672,9 @@ $("modal").onclick=e=>{if(e.target===$("modal"))closeModal()};
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
 $("search").oninput=render;$("fromDate").oninput=render;$("toDate").oninput=render;
 
-fetch("./capa-data.json").then(r=>{if(!r.ok)throw Error();return r.json()}).then(d=>{
+loadAlfaCapaData().then(d=>{
  data=d;setupDropdowns();render();
-}).catch(()=>{$("tableBody").innerHTML='<tr><td colspan="12" style="text-align:center;padding:35px;color:#b52b20">تعذر تحميل capa-data.json</td></tr>'});
+}).catch((e)=>{console.error(e);$("tableBody").innerHTML='<tr><td colspan="12" style="text-align:center;padding:35px;color:#b52b20">تعذر تحميل بيانات CAPA</td></tr>'});
 </script>
 
 
@@ -869,6 +869,7 @@ fetch("./capa-data.json").then(r=>{if(!r.ok)throw Error();return r.json()}).then
 <script>
 (function(){function pad(n){return String(n).padStart(2,'0')}function tick(){const el=document.getElementById('liveClock');if(!el)return;const d=new Date(),m=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],hh=d.getHours(),ap=hh>=12?'PM':'AM',h=hh%12||12;el.textContent='Today • '+pad(d.getDate())+' '+m[d.getMonth()]+' '+d.getFullYear()+' • '+pad(h)+':'+pad(d.getMinutes())+':'+pad(d.getSeconds())+' '+ap}tick();setInterval(tick,1000)})();
 </script>
+<script src="./capa-data-loader.js"></script>
 <script src="./sidebar-standard.js?v=20260918.6"></script>
 </body>
 </html>
