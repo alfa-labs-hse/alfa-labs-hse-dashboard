@@ -470,7 +470,8 @@ html{scroll-behavior:smooth}body{font-family:Arial,Tahoma,sans-serif;background:
 <script>
 /* Mobile menu is controlled by sidebar-standard.js. */
 </script>
-
+<script src="./capa-data-loader.js"></script>
+<script>
 function norm(v){return String(v??'').trim().toLowerCase()}
 function riskKey(v){let s=norm(v);if(s.includes('critical')||s.includes('حرج'))return'Critical';if(s.includes('high')||s.includes('عالي'))return'High';if(s.includes('medium')||s.includes('متوسط'))return'Medium';if(s.includes('low')||s.includes('منخفض'))return'Low';return''}
 function statusKey(v){let s=norm(v);if(s.includes('open')||s.includes('مفتوح')||s.includes('مفتوحة'))return'Open';if(s.includes('progress')||s.includes('تنفيذ')||s.includes('قيد التنفيذ'))return'In Progress';if(s.includes('closed')||s.includes('مغلق')||s.includes('مغلقة'))return'Closed';return''}
@@ -480,7 +481,7 @@ function buildRiskChart(counts,total){const chart=document.getElementById('riskC
 function buildDonut(open,progress,closed,total){const a=total?open/total*100:0,b=total?progress/total*100:0;document.getElementById('statusDonut').style.background=`conic-gradient(#315d91 0 ${a}%,#d97722 ${a}% ${a+b}%,#23834b ${a+b}% 100%)`;document.getElementById('statusRate').textContent=total?Math.round(closed/total*100)+'% closed':'—'}
 async function loadCapa(){
   try{
-    const r=await fetch('./capa-data.json',{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);const data=await r.json();if(!Array.isArray(data))throw new Error('Invalid data');
+    const data=await loadAlfaCapaData();if(!Array.isArray(data))throw new Error('Invalid data');
     const total=data.length,critical=data.filter(x=>riskKey(x.risk)==='Critical').length,high=data.filter(x=>riskKey(x.risk)==='High').length,open=data.filter(x=>statusKey(x.status)==='Open').length,progress=data.filter(x=>statusKey(x.status)==='In Progress').length,closed=data.filter(x=>statusKey(x.status)==='Closed').length;
     set('totalValue',total);set('criticalValue',critical);set('highValue',high);set('openValue',open);set('progressValue',progress);set('closedValue',closed);set('donutTotal',total);set('legendOpen',open);set('legendProgress',progress);set('legendClosed',closed);set('actionCritical',critical);set('actionHigh',high);set('actionOpen',open);
     buildRiskChart({Critical:critical,High:high,Medium:data.filter(x=>riskKey(x.risk)==='Medium').length,Low:data.filter(x=>riskKey(x.risk)==='Low').length},total);buildDonut(open,progress,closed,total);
@@ -506,7 +507,7 @@ loadCapa();
     if(trend){const ms=['Apr','May','Jun','Jul','Aug','Sep'],vs=ms.map(m=>Number((d.monthly||{})[m]||0)),mx=Math.max(...vs,1);trend.innerHTML=ms.map((m,i)=>'<div class="trend-col"><div class="trend-value">'+vs[i].toLocaleString('en-US')+'</div><div class="trend-bar" style="height:'+Math.max(5,vs[i]/mx*190)+'px"></div><div class="trend-label">'+m+'</div></div>').join('')}
     const mix=document.getElementById('trainingMix');
     if(mix){const entries=Object.entries(d.trainingTypes||{}),mx=Math.max(...entries.map(x=>x[1]),1);mix.innerHTML=entries.map(x=>'<div class="mix-row"><div class="mix-label">'+x[0]+'</div><div class="mix-count">'+Number(x[1]).toLocaleString('en-US')+'</div><div class="mix-track"><div class="mix-fill" style="width:'+(x[1]/mx*100)+'%"></div></div></div>').join('')}
-    const st=document.getElementById('dataStatus');if(st)st.textContent='CAPA + Training live data connected • 1,288 CAPA • '+Number(d.records).toLocaleString('en-US')+' training records';
+    const st=document.getElementById('dataStatus');if(st)st.textContent='CAPA + Training live data connected • '+(document.getElementById('totalValue')?.textContent||'0')+' CAPA • '+Number(d.records).toLocaleString('en-US')+' training records';
   }catch(e){console.error('Training summary load failed',e)}
 })();
 </script>
@@ -540,7 +541,7 @@ loadCapa();
 </script>\n
 <script>
 /* HOME FINAL PRESENTATION GUARD V5 */
-(function(){function cleanHome(){try{document.querySelectorAll('.load-error').forEach(function(e){e.remove()});var banners=[...document.querySelectorAll('.executive-banner')].filter(function(e){return /Executive HSE Overview/.test(e.textContent||'')});banners.slice(1).forEach(function(e){e.remove()});var total=document.getElementById('totalValue'),status=document.getElementById('dataStatus');if(status&&total&&total.textContent.trim()&&total.textContent.trim()!=='—')status.textContent='CAPA + Training live data connected • 1,288 CAPA • 1,540 training records'}catch(e){console.warn('Home final guard',e)}}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',cleanHome);else cleanHome();setTimeout(cleanHome,700);setTimeout(cleanHome,1800);setTimeout(cleanHome,3000)})();
+(function(){function cleanHome(){try{document.querySelectorAll('.load-error').forEach(function(e){e.remove()});var banners=[...document.querySelectorAll('.executive-banner')].filter(function(e){return /Executive HSE Overview/.test(e.textContent||'')});banners.slice(1).forEach(function(e){e.remove()});var total=document.getElementById('totalValue'),status=document.getElementById('dataStatus');if(status&&total&&total.textContent.trim()&&total.textContent.trim()!=='—')status.textContent='CAPA + Training live data connected • '+(total.textContent||'0')+' CAPA • '+(document.getElementById('trainingValue')?.textContent||'0')+' training records'}catch(e){console.warn('Home final guard',e)}}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',cleanHome);else cleanHome();setTimeout(cleanHome,700);setTimeout(cleanHome,1800);setTimeout(cleanHome,3000)})();
 </script>
 <style>
 /* ENVIRONMENT HOME SNAPSHOT */
