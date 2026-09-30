@@ -496,6 +496,7 @@ body{margin:0;font-family:Arial,"Segoe UI",Tahoma,sans-serif;background:var(--bg
 <script id="unified-footer-content">
 (function(){function fix(){document.querySelectorAll('.footer').forEach(function(f){f.innerHTML='<div class="footer-brand">جميع الحقوق محفوظة لـ الفا لاب</div><div class="footer-copy">إدارة البيئة والسلامة والصحة المهنية<br><small>Created by Hossam Elsharabasy — HSE Manager</small></div><div class="footer-tag">🛡️ Safety First • Safety Is Everyone’s Responsibility</div>';});}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fix);else fix();setTimeout(fix,300);}());
 </script>
+<script src="./capa-data-loader.js"></script>
 </head>
 <body>
 
@@ -869,7 +870,6 @@ loadAlfaCapaData().then(d=>{
 <script>
 (function(){function pad(n){return String(n).padStart(2,'0')}function tick(){const el=document.getElementById('liveClock');if(!el)return;const d=new Date(),m=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],hh=d.getHours(),ap=hh>=12?'PM':'AM',h=hh%12||12;el.textContent='Today • '+pad(d.getDate())+' '+m[d.getMonth()]+' '+d.getFullYear()+' • '+pad(h)+':'+pad(d.getMinutes())+':'+pad(d.getSeconds())+' '+ap}tick();setInterval(tick,1000)})();
 </script>
-<script src="./capa-data-loader.js"></script>
 <script src="./sidebar-standard.js?v=20260918.6"></script>
 </body>
 </html>
