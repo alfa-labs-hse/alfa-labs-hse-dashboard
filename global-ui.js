@@ -399,6 +399,7 @@ html[data-hse-lang="ar"] #alfa-weather{direction:rtl}
   .unified-header{contain:layout paint!important}
 }
 `;document.head.appendChild(s)}
-function init(){style();addControls();applyTheme();applyLang();(function(){let tm=0;const mo=new MutationObserver(m=>{if(!m.some(x=>x.addedNodes&&x.addedNodes.length))return;clearTimeout(tm);tm=setTimeout(applyLang,350)});mo.observe(document.body,{childList:true,subtree:true})})()}
+function autoRefresh(){setInterval(()=>{window.location.reload()},30*60*1000)}
+function init(){style();addControls();applyTheme();applyLang();autoRefresh();(function(){let tm=0;const mo=new MutationObserver(m=>{if(!m.some(x=>x.addedNodes&&x.addedNodes.length))return;clearTimeout(tm);tm=setTimeout(applyLang,350)});mo.observe(document.body,{childList:true,subtree:true})})()}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();window.AlfaHSEGlobal={applyTheme,applyLang,chartTheme,M};
 })();
