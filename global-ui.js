@@ -37,7 +37,7 @@ async function addWeather(){
 
   const box=document.createElement('div');
   box.id='alfa-weather';
-  box.innerHTML='<span class="wx-icon">🌤️</span><span><span class="wx-temp">--°C</span><br><span class="wx-place">Detecting location…</span></span><span class="wx-extra">Updating…</span>';
+  box.innerHTML='<span class="wx-icon">🌤️</span><span><span class="wx-temp">--°C</span><br><span class="wx-place">Detecting location…</span></span>';
   host.insertBefore(box,host.firstChild);
 
   const fallback={lat:30.0444,lon:31.2357,place:'Cairo, Egypt',timezone:'Africa/Cairo'};
@@ -91,14 +91,10 @@ async function addWeather(){
       const feels=Math.round(Number(x.apparent_temperature));
       const code=Number(x.weather_code||0);
       const rain=Number(x.rain||0)+Number(x.showers||0);
-      const wind=Math.round(Number(x.wind_speed_10m||0));
       const isNight=typeof x.is_day==='number'?x.is_day===0:(new Date()).getHours()>=18||(new Date()).getHours()<6;
       setText('.wx-icon',weatherIcon(code,isNight));
       setText('.wx-temp',Number.isFinite(temp)?temp+'°C':'--°C');
       setText('.wx-place',locationData.place||'Current location');
-      let extra=Number.isFinite(feels)?'Feels '+feels+'°C • '+wind+' km/h':wind+' km/h';
-      if(rain>0)extra+=' • 🌧️ '+rain.toFixed(1)+' mm';
-      setText('.wx-extra',extra);
     }catch(e){
       setText('.wx-temp','--°C');
       setText('.wx-extra','Weather unavailable');
@@ -142,7 +138,7 @@ html.hse-dark:not(.hse-reduced-motion) .kpi:hover{box-shadow:0 18px 38px rgba(0,
 html:not(.hse-dark) #hse-global-controls #hse-theme-btn{background:#0b3157!important;color:#fff!important;border-color:#0b3157!important}
 html.hse-dark #hse-global-controls #hse-theme-btn{background:#fff!important;color:#071a2e!important;border-color:#fff!important}
 #alfa-weather{display:flex;align-items:center;gap:8px;background:#f5f7fa;border:1px solid #e3eaf1;border-radius:10px;padding:8px 11px;color:#17365d;font-size:11px;font-weight:800;white-space:nowrap;direction:ltr}
-#alfa-weather .wx-icon{font-size:19px;line-height:1}#alfa-weather .wx-temp{font-size:15px;font-weight:900}#alfa-weather .wx-place{font-size:10px;color:#71808e;font-weight:700}#alfa-weather .wx-extra{font-size:10px;color:#536b83}
+#alfa-weather .wx-icon{font-size:19px;line-height:1}#alfa-weather .wx-temp{font-size:15px;font-weight:900}#alfa-weather .wx-place{font-size:10px;color:#71808e;font-weight:700}
 html.hse-dark #alfa-weather{background:#172638!important;border-color:#344b61!important;color:#e7eff8!important}html.hse-dark #alfa-weather .wx-place,html.hse-dark #alfa-weather .wx-extra{color:#b8c8d8!important}
 html[data-hse-lang="ar"] #alfa-weather{direction:rtl}
 @media(max-width:800px){.unified-header{padding-top:16px!important;padding-bottom:16px!important}.unified-title{padding-top:3px!important}.unified-title h1,.unified-title h2{overflow:visible!important;text-overflow:clip!important;white-space:normal!important;line-height:1.25!important}#alfa-weather{padding:6px 8px;gap:5px}#alfa-weather .wx-temp{font-size:13px}#alfa-weather .wx-place{font-size:8px}#alfa-weather .wx-extra{font-size:8px}}
