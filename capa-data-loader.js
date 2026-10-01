@@ -2,11 +2,11 @@
 (function(){
 'use strict';
 window.loadAlfaCapaData = async function(){
-  const baseResponse = await fetch('./capa-data.json?v=20260930',{cache:'no-store'});
+  const baseResponse = await fetch('./capa-data.json?v=20261001',{cache:'no-store'});
   if(!baseResponse.ok) throw new Error('CAPA base data HTTP '+baseResponse.status);
   const base = await baseResponse.json();
 
-  const updateResponse = await fetch('./capa-sep-2026-update.b64?v=20260930',{cache:'no-store'});
+  const updateResponse = await fetch('./capa-sep-2026-update.b64?v=20261001',{cache:'no-store'});
   if(!updateResponse.ok) throw new Error('CAPA update data HTTP '+updateResponse.status);
 
   const b64 = (await updateResponse.text()).replace(/\s+/g,'');
