@@ -1,0 +1,28 @@
+name: Repair training snapshot encoding
+on:
+  push:
+    paths:
+      - 'training-data.b64'
+      - '.github/workflows/repair-training.yml'
+permissions:
+  contents: write
+jobs:
+  repair:
+    if: github.event.head_commit.message != 'Repair training snapshot encoding'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Convert binary gzip to Base64 text
+        shell: bash
+        run: |
+          if [ -f training-data.b64 ] && [ "$(xxd -p -l 2 training-data.b64)" = "1f8b" ]; then
+            base64 -w0 training-data.b64 > training-data.b64.txt
+            mv training-data.b64.txt training-data.b64
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add training-data.b64
+            git commit -m "Repair training snapshot encoding"
+            git push
+          else
+            echo "training-data.b64 is already text or missing; nothing to repair."
+          fi
