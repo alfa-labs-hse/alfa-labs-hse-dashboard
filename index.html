@@ -470,7 +470,7 @@ html{scroll-behavior:smooth}body{font-family:Arial,Tahoma,sans-serif;background:
 <script>
 /* Mobile menu is controlled by sidebar-standard.js. */
 </script>
-<script src="./capa-data-loader.js"></script>
+<script src="./capa-data-loader.js?v=20261001"></script>
 <script>
 function norm(v){return String(v??'').trim().toLowerCase()}
 function riskKey(v){let s=norm(v);if(s.includes('critical')||s.includes('حرج'))return'Critical';if(s.includes('high')||s.includes('عالي'))return'High';if(s.includes('medium')||s.includes('متوسط'))return'Medium';if(s.includes('low')||s.includes('منخفض'))return'Low';return''}
@@ -498,7 +498,7 @@ loadCapa();
 /* HOME TRAINING SUMMARY V1 */
 (async function(){
   try{
-    const r=await fetch('./training-summary.json',{cache:'no-store'});
+    const r=await fetch('./training-summary.json?v=20261001',{cache:'no-store'});
     if(!r.ok) throw new Error('Training summary HTTP '+r.status);
     const d=await r.json();
     const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=Number(v||0).toLocaleString('en-US')};
